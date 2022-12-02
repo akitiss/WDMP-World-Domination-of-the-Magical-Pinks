@@ -1,0 +1,12 @@
+WDMP(World Domination by the Magical Pinks)
+April Li, Aahan Mehta, Joshua Liu, Yuki Feng
+SoftDev
+P1 -- devlog
+
+format: -----------------------------------------------------------------------
+
+firstL -- TIMESTAMP\n
+	explain what changes have been made
+	include errors/bugs discovered (or created)
+	
+-------------------------------------------------------------------------------

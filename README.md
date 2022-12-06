@@ -11,10 +11,10 @@ April Li, Aahan Mehta, Joshua Liu, Yuki Feng
 Based on user selection, app will help plan a trip. User can select factors such as location and what type of entiertainment they want(outdoor/amusement park/etc.)
 
 ## API and their cards
-- Weather API 
-- Aviationstack
-- OpenTripMap
-- google maps api
+- Weather API https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_weatherbit.md
+- Aviationstack https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Aviationstack.md
+- OpenTripMap https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenTripMap.md
+- google maps api https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Maps-Embed.md
 
 ## How to Clone, Install, and Run
 `1) Clone the project `

@@ -12,15 +12,18 @@ firstL -- TIMESTAMP\n
 -------------------------------------------------------------------------------
 april li -- 12/5/2022 19:21
 	tested opentripmap api and it worked. got an api key 
-
+-------------------------------------------------------------------------------
 april li -- 12/6/2022 15:34 
 	updated design doc: 
 		fixed wording for website description
 		added new functions to the website 
 		updated component map and explained each component 
 		explained each part of the site map 
-
+-------------------------------------------------------------------------------
 joshua liu -- 12/6/2022 20:49
 	tested google maps api and it worked 
 	aviationstack api doesn't have enough requests
 	using amadeus api for flights 
+-------------------------------------------------------------------------------
+joshua liu -- 12/7/2022 17:39
+	created functionality for the app, primitive home and login pages.

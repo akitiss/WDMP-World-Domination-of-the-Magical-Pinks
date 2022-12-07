@@ -12,7 +12,7 @@ Based on user selection, app will help plan a trip. User can select factors such
 
 ## API and their cards
 - [Weather API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_weatherbit.md)
-- [Aviationstack](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Aviationstack.md)
+- [Amadeus](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Amadeus.md)
 - [OpenTripMap](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenTripMap.md)
 - [Embed Maps](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Maps-Embed.md)
 

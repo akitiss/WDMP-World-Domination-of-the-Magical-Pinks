@@ -10,3 +10,10 @@ firstL -- TIMESTAMP\n
 	include errors/bugs discovered (or created)
 	
 -------------------------------------------------------------------------------
+
+april li -- 12/6/2022 15:34 
+	updated design doc: 
+		fixed wording for website description
+		added new functions to the website 
+		updated component map and explained each component 
+		explained each part of the site map 

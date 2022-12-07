@@ -8,7 +8,7 @@ April Li, Aahan Mehta, Joshua Liu, Yuki Feng
 - Yuki Feng: HTML/Bootstrap
 
 ## About Trippin
-Based on user selection, app will help plan a trip. User can select factors such as location and what type of entiertainment they want(outdoor/amusement park/etc.)
+Based on user selection, app will help plan a trip. User gets to select a multitude of inputs ranging from location to what type of activities they want to do. After selecting those inputs, the app will automatically select various activities for user to do on each day. User is free to edit the activites as they please after. After the trip is completed, trip will be saved in user database where user is free to edit and view.  
 
 ## API and their cards
 - [Weather API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_weatherbit.md)

@@ -19,4 +19,9 @@ def get_username(id):
         return None
     else:
         return result[0]
-    
+
+def register(username, password):
+    c = db.cursor()
+    new_id = c.execute("SELECT * FROM TABLE WHERE u_id = (SELECT MAX(u_id) FROM user )") + 1
+    c.execute("insert into user values(? ,?, ?)", (new_id, username, password,))
+    c.close()

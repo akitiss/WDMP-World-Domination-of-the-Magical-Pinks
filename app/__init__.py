@@ -3,7 +3,7 @@ WDMP: . . .
 '''
 
 from flask import Flask, session, render_template, request, redirect, url_for
-
+from db.pi 
 app = Flask(__name__)
 app.secret_key = "tmep"
 # user and pass
@@ -28,6 +28,11 @@ def home_page():
     else:
         stat = F"Logged in as {session['USERNAME']}"
     return render_template("index.html", status=stat)
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session.pop("USERNAME",None) # removes session info, retunrs nothing if not there
+    return redirect(url_for("home_page", status="Please Login"))
 
 if __name__ == "__main__":
     app.debug = True

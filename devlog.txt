@@ -1,33 +1,50 @@
 WDMP(World Domination by the Magical Pinks)
-April Li, Aahan Mehta, Joshua Liu, Yuki Feng
-SoftDev
-P1 -- devlog
+April Li (PM)
+Aahan Mehta
+Joshua Liu
+Yuki Feng
+p8
+---------------------
+P01 
 
-format: -----------------------------------------------------------------------
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-firstL -- TIMESTAMP\n
-	explain what changes have been made
-	include errors/bugs discovered (or created)
 	
--------------------------------------------------------------------------------
-april li -- 12/5/2022 19:21
-	tested opentripmap api and it worked. got an api key 
--------------------------------------------------------------------------------
-april li -- 12/6/2022 15:34 
-	updated design doc: 
-		fixed wording for website description
-		added new functions to the website 
-		updated component map and explained each component 
-		explained each part of the site map 
--------------------------------------------------------------------------------
-joshua liu -- 12/6/2022 20:49
-	tested google maps api and it worked 
-	aviationstack api doesn't have enough requests
-	using amadeus api for flights 
--------------------------------------------------------------------------------
-joshua liu -- 12/7/2022 17:39
-	created functionality for the app, primitive home and login pages.
--------------------------------------------------------------------------------
-april li -- 12/7/2022 23:57
-	updated readme so virtual enviornment was included in launch codes
--------------------------------------------------------------------------------
+aprilL -- 2022-12-05 19:21
+--------------------------------------------------------------
+tested opentripmap api and it worked. got an api key 
+==============================================================
+
+aprilL -- 2022-12-06 15:34 
+--------------------------------------------------------------
+updated design doc: 
+	fixed wording for website description
+	added new functions to the website 
+	updated component map and explained each component 
+	explained each part of the site map 
+==============================================================
+
+joshuaL -- 2022-12-06 20:49
+--------------------------------------------------------------
+tested google maps api and it worked 
+aviationstack api doesn't have enough requests
+using amadeus api for flights, tested and works 
+==============================================================
+
+joshuaL -- 2022-12-07 17:39
+--------------------------------------------------------------
+created functionality for the app, primitive home and login pages.
+==============================================================
+
+aprilL -- 2022-12-07 23:57
+--------------------------------------------------------------
+updated readme so virtual enviornment was included in launch codes
+==============================================================

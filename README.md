@@ -17,38 +17,38 @@ Based on user selection, app will help plan a trip. User gets to select a multit
 - [Embed Maps](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Maps-Embed.md)
 
 ## Launch Codes
-### 1) Clone the project
+#### 1) Clone the project
 ```
 git clone git@github.com:akitiss/WDMP-World-Domination-of-the-Magical-Pinks.git
 ```
 
-### 2) Navigate to root directory`
+#### 2) Navigate to root directory`
 ``` 
 cd WDMP-World-Domination-of-the-Magical-Pinks/app
 ```
 
-### 3)Create the virtual environment`
+#### 3) Create the virtual environment`
 ```
 python3 -m venv venv
 ```
 
-### 4)Activate the virtual environment`
+#### 4) Activate the virtual environment`
 ```
 . venv/bin/activate
 ```
 
-### 5)Install requirements`
+#### 5) Install requirements`
 ```
 pip install -r requirements.txt
 ```
 
-### 6) Run the program`
+#### 6) Run the program`
 
 ``` 
 python3 __init__.py
 ```
 
-### 7) Open the following link in any web browser`
+#### 7) Open the following link in any web browser`
 ```
 https://127.0.0.1:5000
 ```

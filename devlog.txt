@@ -48,3 +48,11 @@ aprilL -- 2022-12-07 23:57
 --------------------------------------------------------------
 updated readme so virtual enviornment was included in launch codes
 ==============================================================
+
+WDMP(all) -- 2022-12-08 18:31
+--------------------------------------------------------------
+(Done in class but I forgot to git add)
+Added some funtions to db.py,
+Made html and __init__.py support logging out and session information
+Did some research for the design of the website itself
+==============================================================

@@ -28,3 +28,6 @@ joshua liu -- 12/6/2022 20:49
 joshua liu -- 12/7/2022 17:39
 	created functionality for the app, primitive home and login pages.
 -------------------------------------------------------------------------------
+april li -- 12/7/2022 23:57
+	updated readme so virtual enviornment was included in launch codes
+-------------------------------------------------------------------------------

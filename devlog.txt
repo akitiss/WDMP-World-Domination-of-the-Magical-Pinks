@@ -51,15 +51,22 @@ updated readme so virtual enviornment was included in launch codes
 
 WDMP(all) -- 2022-12-08 18:31
 --------------------------------------------------------------
-(Done in class but I forgot to git add)
+(done in class but I forgot to git add)
 added some funtions to db.py,
 made html and __init__.py support logging out and session information
 did some research for the design of the website itself
 ==============================================================
 
-joshuaL -- 2022-12-07 18:12
+joshuaL -- 2022-12-08 18:12
 --------------------------------------------------------------
-added some more db functions and fixed some of the bad syntax in  the register function
+added some more db functions and fixed some of the bad syntax in the register function
+==============================================================
+
+aahanM -- 2022-12-08 21:50
+--------------------------------------------------------------
+made python files to talk to the api's
+can get a city's weather info from weather and can get a list of hotels using opentripmap
+added some comments on file for future planning
 ==============================================================
 
 aprilL & YukiF -- 2022-12-08 22:38 
@@ -71,6 +78,7 @@ created register.html
 
 joshuaL -- 2022-12-07 22:38
 --------------------------------------------------------------
-created register and user match functions
+completed register and user match functions
 reformatted all of database and flask things
 ==============================================================
+

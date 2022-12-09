@@ -3,7 +3,8 @@ WDMP: . . .
 '''
 
 from flask import Flask, session, render_template, request, redirect, url_for
-from db.pi 
+from db import get_username
+
 app = Flask(__name__)
 app.secret_key = "tmep"
 # user and pass

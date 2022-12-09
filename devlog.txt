@@ -52,12 +52,25 @@ updated readme so virtual enviornment was included in launch codes
 WDMP(all) -- 2022-12-08 18:31
 --------------------------------------------------------------
 (Done in class but I forgot to git add)
-Added some funtions to db.py,
-Made html and __init__.py support logging out and session information
-Did some research for the design of the website itself
+added some funtions to db.py,
+made html and __init__.py support logging out and session information
+did some research for the design of the website itself
 ==============================================================
 
 joshuaL -- 2022-12-07 18:12
 --------------------------------------------------------------
-Added some more db functions and fixed some of the bad syntax in  the register function
+added some more db functions and fixed some of the bad syntax in  the register function
+==============================================================
+
+aprilL & YukiF -- 2022-12-08 22:38 
+--------------------------------------------------------------
+created custom css file
+created nav bar 
+created register.html 
+==============================================================
+
+joshuaL -- 2022-12-07 22:38
+--------------------------------------------------------------
+created register and user match functions
+reformatted all of database and flask things
 ==============================================================

@@ -28,7 +28,7 @@ def home_page():
     else:
         print("ID IS : " + str(session['ID']))
         stat = F"Logged in as {get_username(session['ID'])}"
-    return render_template("index.html", status=stat)
+    return render_template("home_page.html", status=stat)
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
@@ -46,6 +46,19 @@ def register_page():
         session["ID"] = Session_id
         return redirect(url_for("home_page"))
     return render_template("register.html", status="Login Info is in use")
+
+@app.route("/create_trip", methods=["GET", "POST"])
+def create_trip():
+    return render_template("create_trip.html")
+
+@app.route("/saved_trips", methods=["GET", "POST"])
+def saved_trips():
+    return render_template("saved_trips.html")
+
+@app.route("/trip", methods=["GET", "POST"])
+def trip():
+    return render_template("trip.html")
+
 
 if __name__ == "__main__":
     app.debug = True

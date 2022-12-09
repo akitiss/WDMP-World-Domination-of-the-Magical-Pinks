@@ -7,7 +7,7 @@ c = db.cursor() # Create the three tables if they dont exist yet
 c.executescript(""" 
     create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
-    create TABLE if NOt EXISTS tripinfo(trip_id primary key, country text, city text, hotel text);
+    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, trip_name text, country text, city text, hotel text);
 """)
 c.close()
 
@@ -43,5 +43,27 @@ def account_match(username, password): # if it matches, return u_id, else return
     if(u_id != None):
         return u_id[0]
     else:
-        print("RETURNED NONE")
         return None
+
+def add_saved_trip(user_ID, trip_name, country, city, hotel):
+    c = db.cursor()
+    # add trip info to tripinfo table here.
+    trip_ID = add_trip_info(trip_name, country, city, hotel)
+    if(trip_ID == -1):
+        return -1
+    #c.execute("insert into tripinfo values(?, ? , ? , ?)", (trip_ID, str(trip_name),str(country), str(city), str(hotel)))
+    db.commit()
+    c.close()
+
+def add_trip_info(trip_name, country, city, hotel):
+    c = db.cursor()
+    c.execute("SELECT MAX(trip_id) FROM tripinfo")
+    max_id = c.fetchone()
+    if (max_id[0] != None):
+        new_id = max_id[0] + 1
+    else:
+        new_id = 0
+    c.execute("insert into tripinfo values(?, ? , ? , ?)", (new_id, str(trip_name),str(country), str(city), str(hotel)))
+    db.commit()
+    c.close()
+    return new_id

@@ -7,20 +7,19 @@ from db import *
 
 app = Flask(__name__)
 app.secret_key = "tmep"
-# user and pass
-user = "user"
-passwd = "pass"
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if ( request.method == "GET" ):
         return render_template("login.html") # This is for accessing the page
-    if ( request.form.get("username") == user ):
-        if( request.form.get("password") == passwd ):
-            session["ID"] = request.form.get("username") # change to session id.
-            return redirect(url_for("home_page"))
-        return render_template("login.html", response="The Username and Password do not match")
-    return render_template("login.html", response="Please Enter a Valid Username")
+    Input0 = request.form.get("username")
+    Input1 = request.form.get("password")
+    session_id = account_match(Input0, Input1)
+    if ( session_id != None ):
+        session["ID"] = session_id
+        return redirect(url_for("home_page"))
+    return render_template("login.html", response="Username and Passwords do not match")
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():

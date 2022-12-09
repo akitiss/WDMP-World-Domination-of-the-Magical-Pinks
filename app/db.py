@@ -24,10 +24,10 @@ def register_new_user(username, password): # if username and password combinatio
     c = db.cursor()
     c.execute("select exists(select 1 from user where username=? and password=?)", (username, password,)) # returns 1 if if already exists
     if (c.fetchone()[0] == 1):
-        return False
+        return -1
     c.execute("SELECT MAX(u_id) FROM user")
     max_id = c.fetchone()
-    if (len(max_id) > 0):
+    if (max_id[0] != None):
         new_id = max_id[0] + 1
     else:
         new_id = 0

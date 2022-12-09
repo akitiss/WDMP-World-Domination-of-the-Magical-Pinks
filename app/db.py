@@ -2,7 +2,7 @@ import sqlite3
 
 DB_FILE = "test.db"
 
-db = sqlite3.connect(DB_FILE)
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor() # Create the three tables if they dont exist yet
 c.executescript(""" 
     create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));

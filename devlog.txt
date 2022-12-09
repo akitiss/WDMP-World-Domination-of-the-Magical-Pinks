@@ -76,9 +76,14 @@ created nav bar
 created register.html 
 ==============================================================
 
-joshuaL -- 2022-12-07 22:38
+joshuaL -- 2022-12-08 22:38
 --------------------------------------------------------------
 completed register and user match functions
 reformatted all of database and flask things
 ==============================================================
 
+joshuaL -- 2022-12-08 23:25
+--------------------------------------------------------------
+generalizing opetripmap. *NOT FUNCTIONING RN BECAUSE IM TRYING
+TO GET IT TO LINK TO WIKIPEDIA AND POTENTIALLY AN IMAGE*
+==============================================================

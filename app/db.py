@@ -20,8 +20,28 @@ def get_username(id):
     else:
         return result[0]
 
-def register(username, password):
+def register_new_user(username, password): # if username and password combination already exists, return False, else return True
     c = db.cursor()
-    new_id = c.execute("SELECT * FROM TABLE WHERE u_id = (SELECT MAX(u_id) FROM user )") + 1
+    c.execute("select exists(select 1 from user where username=? and password=?)", (username, password,))
+    if (c.fetchone[0] == 0):
+        return False
+    c.execute("SELECT MAX(u_id) FROM user")
+    max_id = c.fetchone()[0]
+    if (max_id != None):
+        new_id = max_id + 1
+    else:
+        new_id = 0
     c.execute("insert into user values(? ,?, ?)", (new_id, username, password,))
+    db.commit()
     c.close()
+    return True
+
+def account_match(username, password): # if it matches, return u_id, else return None
+    c.execute('select u_id from user where (username = ? AND password = ?)', (str(username), str(password)))
+    u_id = c.fetchone[0]
+    if(u_id == None):
+        c.close()
+        return None
+    else:
+        c.close()
+        return u_id

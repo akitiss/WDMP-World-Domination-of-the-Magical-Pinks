@@ -56,3 +56,8 @@ Added some funtions to db.py,
 Made html and __init__.py support logging out and session information
 Did some research for the design of the website itself
 ==============================================================
+
+joshuaL -- 2022-12-07 18:12
+--------------------------------------------------------------
+Added some more db functions and fixed some of the bad syntax in  the register function
+==============================================================

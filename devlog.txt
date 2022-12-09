@@ -61,3 +61,10 @@ joshuaL -- 2022-12-07 18:12
 --------------------------------------------------------------
 Added some more db functions and fixed some of the bad syntax in  the register function
 ==============================================================
+
+aahanM -- 2022-12-07 21:50
+--------------------------------------------------------------
+Made python files to talk to the API's. Can get a city's weather
+info from weather and can get a list of hotels using opentripmap.
+added some comments on file for future planning.
+==============================================================

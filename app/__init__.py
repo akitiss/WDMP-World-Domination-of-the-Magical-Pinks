@@ -26,7 +26,8 @@ def home_page():
     if(session.get("ID", None) == None):
         stat = "Please Login"
     else:
-        stat = F"Logged in as {session['ID']}"
+        print("ID IS : " + str(session['ID']))
+        stat = F"Logged in as {get_username(session['ID'])}"
     return render_template("index.html", status=stat)
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -36,15 +37,15 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
-    if( request.method == "GET"):
-        return render_template("register.html", message="Enter a Username and password")
+    if( request.method == "GET"): # display page
+        return render_template("register.html", status="Enter a Username and password")
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     Session_id = register_new_user(Input0, Input1)
-    if( Session_id != None ):
+    if( Session_id != False ): # see if new user info is already in use, if not then sign them in
         session["ID"] = Session_id
         return redirect(url_for("home_page"))
-    return render_template("register.html", message="Login Info is in use")
+    return render_template("register.html", status="Login Info is in use")
 
 if __name__ == "__main__":
     app.debug = True

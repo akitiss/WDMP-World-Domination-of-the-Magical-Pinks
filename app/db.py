@@ -15,33 +15,33 @@ def get_username(id):
     c = db.cursor()
     c.execute("select username FROM user WHERE u_id = ?", (id,))
     result = c.fetchone()
-    if(len(result) == 0):
+    if(result == None):
         return None
     else:
         return result[0]
 
-def register_new_user(username, password): # if username and password combination already exists, return False, else return True
+def register_new_user(username, password): # if username and password combination already exists, return False, else return ID
     c = db.cursor()
-    c.execute("select exists(select 1 from user where username=? and password=?)", (username, password,))
-    if (c.fetchone[0] == 0):
+    c.execute("select exists(select 1 from user where username=? and password=?)", (username, password,)) # returns 1 if if already exists
+    if (c.fetchone()[0] == 1):
         return False
     c.execute("SELECT MAX(u_id) FROM user")
-    max_id = c.fetchone()[0]
-    if (max_id != None):
-        new_id = max_id + 1
+    max_id = c.fetchone()
+    if (len(max_id) > 0):
+        new_id = max_id[0] + 1
     else:
         new_id = 0
     c.execute("insert into user values(? ,?, ?)", (new_id, username, password,))
     db.commit()
     c.close()
-    return True
+    return new_id
 
 def account_match(username, password): # if it matches, return u_id, else return None
-    c.execute('select u_id from user where (username = ? AND password = ?)', (str(username), str(password)))
-    u_id = c.fetchone[0]
-    if(u_id == None):
-        c.close()
-        return None
+    c = db.cursor()
+    c.execute('select u_id from user where (username = ? AND password = ?)', (str(username), str(password),))
+    u_id = c.fetchone()
+    if(u_id != None):
+        return u_id[0]
     else:
-        c.close()
-        return u_id
+        print("RETURNED NONE")
+        return None

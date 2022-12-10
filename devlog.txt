@@ -82,8 +82,7 @@ completed register and user match functions
 reformatted all of database and flask things
 ==============================================================
 
-joshuaL -- 2022-12-08 23:25
+aprilL -- 2022-12-09 13:34
 --------------------------------------------------------------
-generalizing opetripmap. *NOT FUNCTIONING RN BECAUSE IM TRYING
-TO GET IT TO LINK TO WIKIPEDIA AND POTENTIALLY AN IMAGE*
+created all html pages and linked to nav bar
 ==============================================================

@@ -100,3 +100,8 @@ aahanM -- 2022-12-09 22:01
 Finished a generalizable opentripmap function call! remembered
 that functions need to be returned!
 ==============================================================
+
+joshuaL -- 2022-12-10 18:00
+--------------------------------------------------------------
+Added amadeus.py with basic calling functions to get flight data and fixed some functions in db.py
+==============================================================

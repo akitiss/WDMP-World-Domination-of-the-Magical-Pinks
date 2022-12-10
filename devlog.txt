@@ -87,3 +87,8 @@ joshuaL -- 2022-12-08 23:25
 generalizing opetripmap. *NOT FUNCTIONING RN BECAUSE IM TRYING
 TO GET IT TO LINK TO WIKIPEDIA AND POTENTIALLY AN IMAGE*
 ==============================================================
+
+joshuaL -- 2022-12-09 21:24
+--------------------------------------------------------------
+Added functions to the db.py page that might be useful later
+==============================================================

@@ -85,7 +85,7 @@ reformatted all of database and flask things
 ==============================================================
 
 aahanM -- 2022-12-08 23:25
---------------------------------------------------------------
+-------------------------------------------------------------
 generalizing opetripmap. *NOT FUNCTIONING RN BECAUSE IM TRYING
 TO GET IT TO LINK TO WIKIPEDIA AND POTENTIALLY AN IMAGE*
 ==============================================================
@@ -109,4 +109,9 @@ that functions need to be returned!
 joshuaL -- 2022-12-10 18:00
 --------------------------------------------------------------
 Added amadeus.py with basic calling functions to get flight data and fixed some functions in db.py
+==============================================================
+
+aprilL -- 2022-12-11 16:54
+--------------------------------------------------------------
+Fixed up nav bar and started working on login page.
 ==============================================================

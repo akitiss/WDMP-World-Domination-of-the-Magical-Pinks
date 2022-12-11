@@ -45,13 +45,11 @@ def account_match(username, password): # if it matches, return u_id, else return
     else:
         return None
 
-def add_saved_trip(user_ID, trip_name, country, city, hotel):
-    c = db.cursor()
-    # add trip info to tripinfo table here.
+def add_saved_trip(user_ID, trip_name, country, city, hotel): # This adds to both: Use this one instead of the other
+    # add trip info to tripinfo table.
     trip_ID = add_trip_info(trip_name, country, city, hotel)
-    if(trip_ID == -1):
-        return -1
-    #c.execute("insert into tripinfo values(?, ? , ? , ?)", (trip_ID, str(trip_name),str(country), str(city), str(hotel)))
+    c = db.cursor()
+    c.execute("insert into savedtrips values(?, ?)", (user_ID, trip_ID))
     db.commit()
     c.close()
 

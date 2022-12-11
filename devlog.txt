@@ -59,14 +59,16 @@ did some research for the design of the website itself
 
 joshuaL -- 2022-12-08 18:12
 --------------------------------------------------------------
-added some more db functions and fixed some of the bad syntax in the register function
+added some more db functions and fixed some of the bad syntax
+in the register function
 ==============================================================
 
 aahanM -- 2022-12-08 21:50
 --------------------------------------------------------------
 made python files to talk to the api's
-can get a city's weather info from weather and can get a list of hotels using opentripmap
-added some comments on file for future planning
+can get a city's weather info from weather and can get a list
+of hotels using opentripmap added some comments on file for 
+future planning
 ==============================================================
 
 aprilL & YukiF -- 2022-12-08 22:38 
@@ -82,7 +84,29 @@ completed register and user match functions
 reformatted all of database and flask things
 ==============================================================
 
+aahanM -- 2022-12-08 23:25
+--------------------------------------------------------------
+generalizing opetripmap. *NOT FUNCTIONING RN BECAUSE IM TRYING
+TO GET IT TO LINK TO WIKIPEDIA AND POTENTIALLY AN IMAGE*
+==============================================================
+
 aprilL -- 2022-12-09 13:34
 --------------------------------------------------------------
 created all html pages and linked to nav bar
+==============================================================
+
+joshuaL -- 2022-12-09 21:24
+--------------------------------------------------------------
+Added functions to the db.py page that might be useful later
+==============================================================
+
+aahanM -- 2022-12-09 22:01
+--------------------------------------------------------------
+Finished a generalizable opentripmap function call! remembered
+that functions need to be returned!
+==============================================================
+
+joshuaL -- 2022-12-10 18:00
+--------------------------------------------------------------
+Added amadeus.py with basic calling functions to get flight data and fixed some functions in db.py
 ==============================================================

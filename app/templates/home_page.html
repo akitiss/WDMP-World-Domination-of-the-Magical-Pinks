@@ -15,43 +15,56 @@
     
 
     <body>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-primary flex-sm-nowrap flex-wrap">
+        <nav class="navbar navbar-expand-sm sticky-top navbar-dark flex-sm-nowrap flex-wrap">
             <div class="container-fluid">
-                <button class="navbar-toggler flex-grow-sm-1 flex-grow-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar5">
+                <button class="navbar-toggler flex-grow-sm-1 flex-grow-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <span class="navbar-brand flex-grow-1"> 
                     <form action="/">
                       <button class="btn text-white fs-4 p-1"> Trippin </button>
                     </form>
-                  </span>                
-                <div class="navbar-collapse collapse flex-grow-1 justify-content-center" id="navbar5">
-                    <ul class="navbar-nav mx-auto">
+                </span>   
+                    <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
                         <li class="nav-item">
-                            <form action="/login" method="GET">
-                                <button class="btn" type="submit" id="login">LOGIN</button>
-                            </form>                
+                            <a class = "nav-link"> 
+                                <form action="/create_trip" method="GET">
+                                    <button class="btn" type="submit" id="create_trip">CREATE TRIP</button>
+                                </form>
+                            </a>                
                         </li>
                         <li class="nav-item">
-                            <form action="/logout">
-                                <button class="btn" type="submit" id="logout">LOGOUT</button>
-                            </form>                
+                            <a class = "nav-link"> 
+                                <form action="/saved_trips" method="GET">
+                                    <button class="btn" type="submit" id="saved_trips">SAVED TRIPS</button>
+                                </form>  
+                            </a>              
                         </li>
-                        <li class="nav-item">
-                            <form action="/register">
-                                <button class="btn" type="submit" id="register">REGISTER</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form action="/create_trip" method="GET">
-                                <button class="btn" type="submit" id="create_trip">CREATE TRIP</button>
-                            </form>                
-                        </li>
-                        <li class="nav-item">
-                            <form action="/saved_trips" method="GET">
-                                <button class="btn" type="submit" id="saved_trips">SAVED TRIPS</button>
-                            </form>                
-                        </li>
+                    </ul>
+                    
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <li class="nav-item dropdown">
+                            <button type="button" class="navbar_text btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" data-bs-toggle="dropdown"  data-bs-display="static">
+                                USER
+                            </button>
+                            <div class="navbar_dropdown dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item">
+                                <form action="/login" method="GET">
+                                    <button class="navbar_dropdown_text btn" type="submit" id="login">LOGIN</button>
+                                </form>                    
+                              </a>
+                              <a class="dropdown-item">
+                                <form action="/logout" method="GET">
+                                    <button class="navbar_dropdown_text btn" type="submit" id="logout">LOGOUT</button>
+                                </form>                    
+                              </a>
+                              <a class="dropdown-item">
+                                <form action="/register" method="GET">
+                                    <button class="navbar_dropdown_text btn" type="submit" id="register">REGISTER</button>
+                                </form>                    
+                              </a>
+                            </div>
+                          </li>
                     </ul>
                 </div>
                 <div class="flex-grow-1">
@@ -62,7 +75,21 @@
       
         <div class = "container-fluid p-2">
             <h1>
-                Home Page
+                Home Page  <br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi<br>
+                hi
             </h1>
             <p>
                 

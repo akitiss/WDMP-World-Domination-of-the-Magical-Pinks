@@ -1,7 +1,14 @@
-.sup {
+.navbar {
     background-color: #2EC0F9;
 }
 
+.navbar_text, .navbar_dropdown_text {
+    color: black;
+}
+
+.navbar_dropdown{
+    background-color: white;
+}
 
 
 /* red: #FE5F55

@@ -52,11 +52,11 @@ def register_page():
     else:
         return render_template("register.html", status="wrong psswd")
 
-@app.route("/create_trip", methods=["GET", "POST"])
+@app.route("/create_trip_location1", methods=["GET", "POST"])
 def create_trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("create_trip.html")
+    return render_template("create_trip_location1.html")
 
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():

@@ -47,12 +47,25 @@
                         <!--spacer-->
                     </div>
                 </div>
-            </nav>
-    
+            </nav>    
+
         <div class = "container-fluid p-2">
             <h1>
-                Trip
+                Create Trip
             </h1>
+
+            <form>
+                <div class="form-group">
+                  <label for="input-city">Location: </label>
+                  <input type="text" class="form-control" id="input-city" placeholder="Enter city">
+                </div>
+            </form>    
+            <p></p>
+
+            <form action="/get_location" method="POST">
+                <button class="user_button btn" type="submit" id="location">SUBMIT</button>
+            </form>                    
+
         </div>
     </body>
 </html>

@@ -40,31 +40,15 @@
                             </a>              
                         </li>
                     </ul>
-                    
+
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-                        <li class="nav-item dropdown">
-                            <button type="button" class="navbar_text btn dropdown-toggle" data-bs-toggle="dropdown"  data-bs-display="static">
-                                USER
-                            </button>
-                            <div class="navbar_dropdown dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item">
-                                <form action="/login" method="GET">  
-                                    <!-- I DONT KNOW HOW TO MAKE BUTTON TAKE UP ALL THE SPACE  -->
-                                    <button class="navbar_dropdown_text btn align-content-stretch flex-wrap" type="submit" id="login">LOGIN</button>
-                                </form>                    
-                              </a>
-                              <a class="dropdown-item">
+                        <li class="nav-item">
+                            <a class = "nav-link"> 
                                 <form action="/logout" method="GET">
-                                    <button class="navbar_dropdown_text btn" type="submit" id="logout">LOGOUT</button>
-                                </form>                    
-                              </a>
-                              <a class="dropdown-item">
-                                <form action="/register" method="GET">
-                                    <button class="navbar_dropdown_text btn" type="submit" id="register">REGISTER</button>
-                                </form>                    
-                              </a>
-                            </div>
-                          </li>
+                                    <button class="btn" type="submit" id="logout">LOGOUT</button>
+                                </form>
+                            </a>                
+                        </li>
                     </ul>
                 </div>
                 <div class="flex-grow-1">
@@ -77,6 +61,19 @@
             <h1>
                 Create Trip
             </h1>
+
+            <form>
+                <div class="form-group">
+                  <label for="input-city">Location: </label>
+                  <input type="text" class="form-control" id="input-city" placeholder="Enter city">
+                </div>
+            </form>    
+            <p></p>
+
+            <form action="/get_location" method="POST">
+                <button class="user_button btn" type="submit" id="location">SUBMIT</button>
+            </form>                    
+
         </div>
     </body>
 </html>

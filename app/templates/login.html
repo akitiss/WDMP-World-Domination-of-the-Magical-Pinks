@@ -14,10 +14,22 @@
 </head>
 
   <body>
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <span class="navbar-brand"> 
+              <form action="/" method="GET">
+                <button class="btn text-white fs-4 p-1"> Trippin </button>
+              </form>
+          </span>   
+  </nav>
+
     <div class="container-fluid p-5">
-      <p1>
-        Sign In 
-      </p1>
+      <h1>
+        Login 
+      </h1>
 
       <form class="px-4 py-3" action ="/login" method="POST">
         <div class="form-group">
@@ -26,23 +38,18 @@
         </div>
         <div class="form-group">
           <label for="form_password">Password</label>
-          <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">
-          <small id="passwordHelpBlock" class="form-text text-muted">
-            Your password must be 8-20 characters long.
-          </small>          
+          <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">    
         </div>
         <p> </p>
-        <button type="submit" class="user_button btn" name="sub1" value="Sign In">Sign in</button>
+        <button type="submit" class="user_button btn" name="sub1" value="Sign In">Login</button>
       </form>
 
       <p>{{response}}</p>
 
       <p> Don't have an account? </p> 
-      <button type = "button" class="user_button btn"> 
         <form action="/register" method="GET">
-          <button class="btn" type="register" id="register">Sign Up</button>
+          <button class="user_button btn" value="register" name="sub1">Sign Up</button>
         </form>  
-      </button>
 
     </div>
     </body>

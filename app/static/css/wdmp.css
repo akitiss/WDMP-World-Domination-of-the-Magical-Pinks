@@ -18,6 +18,11 @@ body{
     background-color: white;
 }
 
+.user_button:hover{
+    color: white;
+    background-color: #2EC0F9;
+}
+
 
 /* red: #FE5F55
 yellow: #FFD166

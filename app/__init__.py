@@ -25,6 +25,7 @@ def login():
 def home_page():
     if(session.get("ID", None) == None):
         stat = "Please Login"
+        return redirect(url_for("login"))
     else:
         print("ID IS : " + str(session['ID']))
         stat = F"Logged in as {get_username(session['ID'])}"
@@ -33,7 +34,7 @@ def home_page():
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.pop("ID",None) # removes session info, retunrs nothing if not there
-    return redirect(url_for("home_page", status="Please Login"))
+    return redirect(url_for("login", status="Please Login"))
 
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
@@ -49,14 +50,20 @@ def register_page():
 
 @app.route("/create_trip", methods=["GET", "POST"])
 def create_trip():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
     return render_template("create_trip.html")
 
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
     return render_template("saved_trips.html")
 
 @app.route("/trip", methods=["GET", "POST"])
 def trip():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
     return render_template("trip.html")
 
 

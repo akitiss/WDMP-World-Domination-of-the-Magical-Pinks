@@ -42,11 +42,15 @@ def register_page():
         return render_template("register.html", status="Enter a Username and password")
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
-    Session_id = register_new_user(Input0, Input1)
-    if( Session_id != -1 ): # see if new user info is already in use, if not then sign them in
-        session["ID"] = Session_id
-        return redirect(url_for("home_page"))
-    return render_template("register.html", status="Login Info is in use")
+    Input2 = request.form.get("password_confirm")
+    if Input1 == Input2:
+        Session_id = register_new_user(Input0, Input1)
+        if( Session_id != -1 ): # see if new user info is already in use, if not then sign them in
+            session["ID"] = Session_id
+            return redirect(url_for("home_page"))
+        return render_template("register.html", status="Login Info is in use")
+    else:
+        return render_template("register.html", status="wrong psswd")
 
 @app.route("/create_trip", methods=["GET", "POST"])
 def create_trip():

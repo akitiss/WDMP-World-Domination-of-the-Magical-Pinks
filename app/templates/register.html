@@ -26,46 +26,50 @@
   
 
     <body>
-        <div class="container-fluid p-5">
-            <h1>
+        <div class="container-fluid p-5 justify-content-center">
+            <h1 class="text-center">
               Sign Up
             </h1>
-      
-            <form class="px-4 py-3" action ="/register" method="POST">
-              <div class="form-group">
-                <label for="form_user">Username</label>
-                <small id="passwordHelpBlock" class="form-text text-muted">
-                  Your username must be 8-20 characters long.
-                </small>
-                <input required type="text" class="form-control" name="username" id="form_user" placeholder="Username">
+            <div class="container-fluid w-50">
+              <form class="px-4 py-3" action ="/register" method="POST">
                 
-              </div>
-              <div class="form-group">
-                <label for="form_password">Password</label>
-                <small id="passwordHelpBlock" class="form-text text-muted">
-                  Your password must be 8-20 characters long.
-                </small> 
-                <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">
-                         
-              </div>
-              <div class="form-group">
-                <label for="form_password">Confirm Password</label>
-                <input required type="password" class="form-control" name="password_confirm" id="form_password" placeholder="Password">      
-              </div>
+                <div class="form-group">
+                  <label for="form_user">Username</label>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                    <br>Username must be 8-20 characters long.
+                  </small>
+                  <input required type="text" class="form-control" name="username" id="form_user" placeholder="Username">
+                </div>
+                
+                <div class="form-group">
+                  <label for="form_password">Password</label>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                    <br>Password must be 8-20 characters long.
+                  </small> 
+                  <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">
+                </div>
+                
+                <div class="form-group">
+                  <label for="form_password">Confirm Password</label>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                    <br>Retype same password to match. 
+                  </small>
+                  <input required type="password" class="form-control" name="password_confirm" id="form_password" placeholder="Password">      
+                </div>
 
-              <p> </p>
-              <button type="submit" class="user_button btn" name="sub1" value="Sign In">Sign up</button>
-            </form>
-      
-            <p class = "text-danger">{{status}}</p>
-      
-            <p> Already have an account? </p> 
+                <div class="text-center">
+                  <br> <button type="submit" class="user_button btn" name="sub1" value="Sign In">Sign up</button>
+                </div>
+                
+              </form>
+            </div> <!-- close container to center stuff -->
+            <div class="container-fluid text-center">
+              <p class="text-danger">{{status}}</p>
+              <p> Already have an account? </p> 
               <form action="/login" method="GET">
                 <button class="user_button btn" value="login" name="sub1">Login</button>
               </form>  
-      
-          </div>
-      
-
+            </div>  <!-- close login container -->
+        </div>
     </body>
 </html>

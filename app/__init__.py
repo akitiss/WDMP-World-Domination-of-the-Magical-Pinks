@@ -19,7 +19,7 @@ def login():
     if ( session_id != None ):
         session["ID"] = session_id
         return redirect(url_for("home_page"))
-    return render_template("login.html", response="Username and Passwords do not match")
+    return render_template("login.html", response="Username and passwords do not match.")
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():
@@ -34,12 +34,12 @@ def home_page():
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.pop("ID",None) # removes session info, retunrs nothing if not there
-    return redirect(url_for("login", status="Please Login"))
+    return redirect(url_for("login", status="Please login"))
 
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
     if( request.method == "GET"): # display page
-        return render_template("register.html", status="Enter a Username and password")
+        return render_template("register.html", status="Enter a username and password")
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     Input2 = request.form.get("password_confirm")
@@ -48,9 +48,9 @@ def register_page():
         if( Session_id != -1 ): # see if new user info is already in use, if not then sign them in
             session["ID"] = Session_id
             return redirect(url_for("home_page"))
-        return render_template("register.html", status="Login Info is in use")
+        return render_template("register.html", status="Login info is in use.")
     else:
-        return render_template("register.html", status="wrong psswd")
+        return render_template("register.html", status="Passwords do not match.")
 
 @app.route("/create_trip_location1", methods=["GET", "POST"])
 def create_trip():

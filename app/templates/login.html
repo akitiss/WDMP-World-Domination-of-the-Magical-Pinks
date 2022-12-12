@@ -24,31 +24,35 @@
       </span>   
 </nav>
 
-    <div class="container-fluid p-5">
-      <h1>
+    <div class="container-fluid p-5 justify-content-center">
+      <h1 class="text-center">
         Login 
       </h1>
+      <div class="container-fluid w-50">
+        <form class="px-4 py-3" action ="/login" method="POST">
 
-      <form class="px-4 py-3" action ="/login" method="POST">
-        <div class="form-group">
-          <label for="form_user">Username</label>
-          <input required type="text" class="form-control" name="username" id="form_user" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <label for="form_password">Password</label>
-          <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">    
-        </div>
-        <p> </p>
-        <button type="submit" class="user_button btn" name="sub1" value="Sign In">Login</button>
-      </form>
+          <div class="form-group">
+            <label for="form_user">Username</label>
+            <input required type="text" class="form-control" name="username" id="form_user" placeholder="Username">
+          </div>
 
-      <p>{{response}}</p>
+          <div class="form-group">
+            <label for="form_password">Password</label>
+            <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">    
+          </div>
 
+          <div class="text-center">
+            <br><button type="submit" class="user_button btn" name="sub1" value="Sign In">Login</button>
+          </div>
+        </form>
+        <p class="text-center">{{response}}</p>
+      </div> 
+    </div> <!-- close container to center stuff -->
+    <div class="container-fluid text-center">
       <p> Don't have an account? </p> 
-        <form action="/register" method="GET">
-          <button class="user_button btn" value="register" name="sub1">Sign Up</button>
-        </form>  
-
-    </div>
-    </body>
+      <form action="/register" method="GET">
+        <button class="user_button btn" value="register" name="sub1">Sign Up</button>
+      </form>  
+    </div> <!-- close register container -->
+  </body>
 </html>

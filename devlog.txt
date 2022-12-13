@@ -71,7 +71,7 @@ of hotels using opentripmap added some comments on file for
 future planning
 ==============================================================
 
-aprilL & YukiF -- 2022-12-08 22:38 
+aprilL & yukiF -- 2022-12-08 22:38 
 --------------------------------------------------------------
 created custom css file
 created nav bar 

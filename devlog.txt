@@ -135,3 +135,8 @@ joshuaL -- 2022-12-11 23:20
 --------------------------------------------------------------
 Added stuff to amadeus that parses the city data and connected the cities query to the webpage.
 ==============================================================
+
+yukiF -- 2022-12-12 16:20
+--------------------------------------------------------------
+Centered and added bootstrap styling to the forms.
+==============================================================

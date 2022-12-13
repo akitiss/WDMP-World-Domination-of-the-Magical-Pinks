@@ -54,18 +54,30 @@
                 Create Trip
             </h1>
 
-            <form>
+            <!-- JUST PLAYING AROUND HERE -->
+            <form action="/create_trip_location1" method="POST">
                 <div class="form-group">
                   <label for="input-city">Location: </label>
-                  <input type="text" class="form-control" id="input-city" placeholder="Enter city">
+                  <input type="text" class="form-control" id="input-city" name="input_city" placeholder="Enter city" value={{VALUE}}>
+                </div> 
+                <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
+            </form>
+            {% for x in CITIES %}
+                <a class = "btn btn-primary" href="/logout" value={{CITIES.get(x)}}> {{x}} </a>
+            {% endfor %}
+            <!-- (ORIGINAL) 
+            <form>  
+                <div class="form-group">
+                  <label for="input-city">Location: </label>
+                  <input type="text" class="form-control" id="input-city" name="input_city" placeholder="Enter city" value={{VALUE}}>
                 </div>
             </form>    
             <p></p>
 
-            <form action="/get_location" method="POST">
+            <form action="/create_trip_location1" method="POST">
                 <button class="user_button btn" type="submit" id="location">SUBMIT</button>
-            </form>                    
-
+            </form> -->
+        
         </div>
     </body>
 </html>

@@ -4,6 +4,7 @@ WDMP: . . .
 
 from flask import Flask, session, render_template, request, redirect, url_for
 from db import *
+from amadeus import *
 
 app = Flask(__name__)
 app.secret_key = "tmep"
@@ -56,7 +57,12 @@ def register_page():
 def create_trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("create_trip_location1.html")
+    if(request.method == "GET"):
+        return render_template("create_trip_location1.html")
+    else:
+        previous_input = request.form.get("input_city")
+        city_info = get_cities_dict(previous_input)
+        return render_template("create_trip_location1.html", VALUE=previous_input, CITIES=city_info)
 
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():

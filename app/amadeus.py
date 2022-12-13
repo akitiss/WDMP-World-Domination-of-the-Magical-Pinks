@@ -24,6 +24,7 @@ def get_flight_data(origin, destination, date, number_of_passengers): # (date is
         "destinationLocationCode": destination,
         "departureDate": date,
         "adults": number_of_passengers,
+        "max": "15"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
     }
     url = base_url + construct_url(params)
     token = get_token()
@@ -33,7 +34,7 @@ def get_flight_data(origin, destination, date, number_of_passengers): # (date is
         print("ERROR on getting flight data: status code != 200")
         return None
     data = request.json()
-    return data # ------unparsed data------
+    return data["data"] # ------unparsed data------
 
 def get_city(keyword):
     base_url = "https://test.api.amadeus.com/v1/reference-data/locations?"
@@ -49,8 +50,14 @@ def get_city(keyword):
         print("ERROR on getting flight data: status code != 200")
         return None
     data = request.json()
-    return data
+    return data["data"] # ------unparsed data------
 
+def get_cities_dict(keyword): # RETURNS a dict with {CITY_NAME : IATA_CODE} pairs, the iata code is used to query flight data.
+    data = get_city(keyword)
+    result = {}
+    for x in data:
+        result[x["name"]] = x["iataCode"]
+    return result
 
 def construct_url(dict): # turns dict key=value pairs into parameters to pass thru the url of the request
     params = ""
@@ -58,4 +65,3 @@ def construct_url(dict): # turns dict key=value pairs into parameters to pass th
         url_part = x + "=" + dict[x] + "&"
         params = params + url_part
     return params[:-1]
-print(get_flight_data("JFK", "ROM", "2022-12-12", "2"))

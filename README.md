@@ -50,5 +50,5 @@ python3 __init__.py
 
 #### 7) Open the following link in any web browser
 ```
-https://127.0.0.1:5000
+http://127.0.0.1:5000
 ```

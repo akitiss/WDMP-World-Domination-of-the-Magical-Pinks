@@ -145,3 +145,8 @@ joshuaL -- 2022-12-13 22:38
 --------------------------------------------------------------
 Changed all api.py files to make use of the keys directory, they all need the respective key_api_name.txt file to work now.
 ==============================================================
+
+aprilL -- 2022-12-13 19:21
+--------------------------------------------------------------
+Added date inputs for create trips
+==============================================================

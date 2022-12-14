@@ -13,14 +13,14 @@ try:
 except FileNotFoundError:
     print("No 'key_amadeus_secret.txt' file found in keys dir")
     secret_key = None
-
+    
 def get_token(): # returns the token used in requests. Should be called before every request.
     if( api_key == None):
         print("ERROR: api_key is not set")
-        return None
+        return ""
     if( secret_key == None):
         print("ERROR: secret_key is not set")
-        return None
+        return ""
     url = "https://test.api.amadeus.com/v1/security/oauth2/token"
     header = {"Content-Type": "application/x-www-form-urlencoded"}
     body = {
@@ -72,6 +72,8 @@ def get_city(keyword):
 
 def get_cities_dict(keyword): # RETURNS a dict with {CITY_NAME : IATA_CODE} pairs, the iata code is used to query flight data.
     data = get_city(keyword)
+    if(data == None): # IF the query fails
+        return None
     result = {}
     for x in data:
         result[x["name"]] = x["iataCode"]

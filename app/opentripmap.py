@@ -4,7 +4,12 @@ import requests
 can get hotel picture from: https://opentripmap.io/docs#/Objects%20list/getListOfPlacesByRadius gives link smwr
 also can get wikipedia link
 '''
-key = "5ae2e3f221c38a28845f05b6f33412d1f6da84b5fd8eccc6b2a3fb05"
+try:
+    with open("keys/key_opentripmap.txt") as file:
+        key = file.read()
+except FileNotFoundError:
+    print("No 'key_opentripmap.txt' file found in keys dir")
+    key = None
 
 def get_places(city, radius, kind): 
     limit = 10
@@ -59,5 +64,5 @@ def get_hotels(city):
 def get_naughty(city):
     return get_places(city, 5000, "adult")
 
-x = get_naughty('Paris')
-print(x)
+#x = get_naughty('Paris')
+#print(x)

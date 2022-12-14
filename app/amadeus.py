@@ -1,8 +1,26 @@
 import requests
-api_key = "cPv7RF0CHqprPA8fkKdvGG0xgAG8CDdh"
-secret_key = "TkhorZu5bprkv7Vd"
+# API KEY
+try:
+    with open("keys/key_amadeus.txt") as file:
+        api_key = file.read()
+except FileNotFoundError:
+    print("No 'key_amadeus.txt' file found in keys dir")
+    api_key = None
+# SECRET KEY
+try:
+    with open("keys/key_amadeus_secret.txt") as file:
+        secret_key = file.read()
+except FileNotFoundError:
+    print("No 'key_amadeus_secret.txt' file found in keys dir")
+    secret_key = None
 
 def get_token(): # returns the token used in requests. Should be called before every request.
+    if( api_key == None):
+        print("ERROR: api_key is not set")
+        return None
+    if( secret_key == None):
+        print("ERROR: secret_key is not set")
+        return None
     url = "https://test.api.amadeus.com/v1/security/oauth2/token"
     header = {"Content-Type": "application/x-www-form-urlencoded"}
     body = {
@@ -65,3 +83,4 @@ def construct_url(dict): # turns dict key=value pairs into parameters to pass th
         url_part = x + "=" + dict[x] + "&"
         params = params + url_part
     return params[:-1]
+print(get_cities_dict("lon"))

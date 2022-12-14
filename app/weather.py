@@ -1,6 +1,10 @@
 import requests
-
-key = "566504083c8f4c3992d24e6d2664c616"
+try:
+    with open("keys/key_weatherbit.txt") as file:
+        key = file.read()
+except FileNotFoundError:
+    print("No 'key_weatherbit.txt' file found in keys dir")
+    key = None
 
 def get_weather(city_name, *country_name): #returns temp of city/country
     if country_name in locals():

@@ -8,6 +8,7 @@ c.executescript("""
     create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
     create TABLE if NOt EXISTS tripinfo(trip_id int primary key, trip_name text, country text, city text, hotel text);
+    create TABLE if NOT EXISTS trip_places(trip_id int, place_id int, PRIMARY KEY (trip_id, place_id));
 """)
 c.close()
 
@@ -65,3 +66,15 @@ def add_trip_info(trip_name, country, city, hotel):
     db.commit()
     c.close()
     return new_id
+
+def add_place(trip_id, place_id):
+    c = db.cursor()
+    c.execute("select trip_id from trip_places where (trip_id = ? AND place_id = ?)", (trip_id, place_id))
+    trip_id = c.fetchone() # FIX
+    if(trip_id != None):
+        return False
+    c.execute("insert into trip_places values(?, ?)", (trip_id, place_id))
+    db.commit()
+    c.close()
+    return True
+print(add_place(-1, -2))

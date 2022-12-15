@@ -16,6 +16,7 @@ def get_username(id):
     c = db.cursor()
     c.execute("select username FROM user WHERE u_id = ?", (id,))
     result = c.fetchone()
+    c.close()
     if(result == None):
         return None
     else:
@@ -41,6 +42,7 @@ def account_match(username, password): # if it matches, return u_id, else return
     c = db.cursor()
     c.execute('select u_id from user where (username = ? AND password = ?)', (str(username), str(password),))
     u_id = c.fetchone()
+    c.close()
     if(u_id != None):
         return u_id[0]
     else:
@@ -70,11 +72,48 @@ def add_trip_info(trip_name, country, city, hotel):
 def add_place(trip_id, place_id):
     c = db.cursor()
     c.execute("select trip_id from trip_places where (trip_id = ? AND place_id = ?)", (trip_id, place_id))
-    trip_id = c.fetchone() # FIX
-    if(trip_id != None):
+    check = c.fetchone() 
+    if(check != None):
+        c.close()
         return False
+    #print(check
     c.execute("insert into trip_places values(?, ?)", (trip_id, place_id))
     db.commit()
     c.close()
     return True
-print(add_place(-1, -2))
+
+def get_savedtrips(ID): # ID is a u_id. Fetches a list of all trip_ids that a user has in their saved trips.
+    c = db.cursor()
+    c.execute("select trip_id from savedtrips where (u_id = ?)", (ID,))
+    data = c.fetchall()
+    c.close()
+    if data == None : 
+        return []
+    trips = [id[0] for id in data]
+    
+    return trips
+
+def get_trip_info(ID): # ID is a trip_id. returns a tuple with all the data in a trip (id, name, country, city, hotel), or None if none
+    c = db.cursor()
+    c.execute("select * from tripinfo where (trip_id = ?)", (ID,))
+    data = c.fetchall()
+    c.close()
+    if(data == []):
+        return None
+    #print(data)
+    
+    return data[0]
+
+def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None if none
+    c = db.cursor()
+    c.execute("select place_id from trip_places where (trip_id = ?)", (ID,))
+    data = c.fetchall()
+    if data == None : 
+        return None
+    places = [id[0] for id in data]
+    c.close()
+    return places
+print(get_places(-1))
+#print(get_trip_info(-1))
+#print(get_savedtrips(-45))
+#print(add_place(-1, -2))

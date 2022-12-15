@@ -67,6 +67,8 @@ def create_trip():
 @app.route("/post_location", methods=["GET", "POST"])
 def post_location():
     #if user DID NOT fill in all fields, return error message 
+    trip_name = request.form.get("trip_name")
+    trip_count = request.form.get("trip_count")
     city = request.form.get("selected_city")
     end_date = request.form.get("end_date")
     start_date = request.form.get("start_date")
@@ -82,7 +84,7 @@ def flights():
 @app.route("/post_flights", methods=["GET", "POST"])
 def post_flights():
     #if user DID NOT fill in all fields, return error message 
-    city = request.form.get("flights")
+    flight = request.form.get("flights")
     #add to db
     return redirect(url_for("create_activities")) 
 
@@ -91,6 +93,13 @@ def create_activities():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
     return render_template("create_trip_activities.html")
+
+@app.route("/post_activities", methods=["GET", "POST"])
+def post_activities():
+    #if user DID NOT fill in all fields, return error message 
+    activity_count = request.form.get("activity_count")
+    #add to db
+    return redirect(url_for("create_activities_display"))
 
 @app.route("/create_activities_display", methods=["GET", "POST"])
 def create_activities_display():
@@ -103,6 +112,13 @@ def create_hotel():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
     return render_template("create_trip_hotels.html")
+
+@app.route("/post_hotels", methods=["GET", "POST"])
+def post_hotels():
+    #if user DID NOT fill in all fields, return error message 
+    hotel = request.form.get("hotel")
+    #add to db
+    return redirect(url_for("saved_trips"))
 
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():

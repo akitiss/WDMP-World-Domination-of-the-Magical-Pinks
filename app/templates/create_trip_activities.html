@@ -68,17 +68,15 @@
       </div>
 
       <br>
-
-      <a class = "btn" href="/create_activities_display" value="activity"> SUBMIT </a>
-
-
-
       
       {% for x in ACTIVITIES %}
         <a class = "btn btn-primary" href="/home_page" value={{ACTIVITIES.get(x)}}> SELECT </a>
       {% endfor %}
 
-            
+      <form action = "/post_activities" method="POST">
+        <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
+      </form>
+    
             
       <!--   
       <div class="accordion" id="accordion">

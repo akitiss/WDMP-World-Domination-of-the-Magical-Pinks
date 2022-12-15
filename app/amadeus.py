@@ -72,6 +72,7 @@ def get_city(keyword):
     return data["data"] # ------unparsed data------
 
 def get_cities_dict(keyword): # RETURNS a dict with {CITY_NAME : IATA_CODE} pairs, the iata code is used to query flight data.
+    print("KEYWORD: " + keyword)
     data = get_city(keyword)
     if(data == None): # IF the query fails
         return None

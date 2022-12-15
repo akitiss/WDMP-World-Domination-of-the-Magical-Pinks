@@ -164,3 +164,9 @@ created html templates and linked them all properlly. new files:
 - create_trip_activities_display
 - create_trip_hotels
 ==============================================================
+
+aprilL -- 2022-12-15 14:20
+--------------------------------------------------------------
+made all submit buttons to the next page a post request
+worked on location to and from input
+==============================================================

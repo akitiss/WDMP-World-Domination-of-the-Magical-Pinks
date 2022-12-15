@@ -12,8 +12,7 @@ except FileNotFoundError:
     key = None
 
 #image, name, location, wikpedia link, description 
-def get_places(city, radius, kind): 
-    limit = 10 #make variable now 
+def get_places(city, radius, kind, limit): 
 
     city_info = f"https://api.opentripmap.com/0.1/en/places/geoname?name={city}&apikey={key}"
     city_json = requests.get(city_info)
@@ -59,11 +58,11 @@ def get_places(city, radius, kind):
     # print(places_list)
     return master_place_details
 
-def get_hotels(city):
-    return get_places(city, 5000, "other_hotels")
+def get_hotels(city, limit):
+    return get_places(city, 5000, "other_hotels", limit)
 
-def get_naughty(city):
-    return get_places(city, 5000, "adult")
+def get_naughty(city, limit):
+    return get_places(city, 5000, "adult", limit)
 
-#x = get_naughty('Paris')
-#print(x)
+x = get_naughty('Paris', 10)
+print(x)

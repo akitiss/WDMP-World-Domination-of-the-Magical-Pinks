@@ -11,8 +11,9 @@ except FileNotFoundError:
     print("No 'key_opentripmap.txt' file found in keys dir")
     key = None
 
+#image, name, location, wikpedia link, description 
 def get_places(city, radius, kind): 
-    limit = 10
+    limit = 10 #make variable now 
 
     city_info = f"https://api.opentripmap.com/0.1/en/places/geoname?name={city}&apikey={key}"
     city_json = requests.get(city_info)

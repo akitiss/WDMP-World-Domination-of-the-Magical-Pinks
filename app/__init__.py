@@ -104,7 +104,6 @@ def create_hotel():
         return redirect(url_for("login"))
     return render_template("create_trip_hotels.html")
 
-
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():
     if(session.get("ID", None) == None):

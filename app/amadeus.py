@@ -35,6 +35,7 @@ def get_token(): # returns the token used in requests. Should be called before e
     json_file = request.json()
     return json_file["access_token"]
 
+    #origin, destination, date, time(start and end), flight company
 def get_flight_data(origin, destination, date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
     base_url = "https://test.api.amadeus.com/v2/shopping/flight-offers?"
     params = {

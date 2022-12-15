@@ -48,6 +48,17 @@
                 Create Trip
             </h1>
 
+            <div class="form-group">
+              <label for="form_user">Name Your Trip</label>
+              <input required type="text" class="form-control" name="trip_name" id="form_name" placeholder="World Pink">
+            </div>
+            <div class="form-group">
+              <label for="form_user">How many people?</label>
+              <input required type="number" class="form-control" name="trip_name" id="form_name" placeholder="4">
+            </div>
+
+
+            <br>
             <h2> Dates </h2>
             <div class="form-group">
                   <label for="input-date">Start Date </label>
@@ -56,14 +67,14 @@
             <div class="form-group">
                 <label for="input-date">End Date </label>
                 <input required type="date" class="form-control" id="end-date" name="end_date" placeholder="MM/DD/YYYY" value={{VALUE}}>
-              </div> 
+            </div> 
 
             <!-- JUST PLAYING AROUND HERE -->
             <h2> Location </h2>
             <form action="/create_trip_location1" method="POST">
                 <div class="form-group">
                   <label for="input-city">From: </label>
-                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="Enter city" value={{VALUE}}>
+                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value={{VALUE}}>
                 </div> 
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
             </form>
@@ -83,7 +94,7 @@
             <form action="/create_trip_location1" method="POST">
                 <div class="form-group">
                   <label for="input-city">To: </label>
-                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="Enter city" value={{VALUE}}>
+                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value={{VALUE}}>
                 </div> 
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
             </form>

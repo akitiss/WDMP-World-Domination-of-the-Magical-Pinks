@@ -43,7 +43,7 @@ def get_flight_data(origin, destination, date, number_of_passengers): # (date is
         "destinationLocationCode": destination,
         "departureDate": date,
         "adults": number_of_passengers,
-        "max": "15"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
+        "max": "1"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
     }
     url = base_url + construct_url(params)
     token = get_token()
@@ -54,6 +54,17 @@ def get_flight_data(origin, destination, date, number_of_passengers): # (date is
         return None
     data = request.json()
     return data["data"] # ------unparsed data------
+
+def get_flight_dict(origin, destination, date, number_of_passengers):
+    data = get_flight_data(origin, destination, date, number_of_passengers)
+    if( data == None ):
+        return None
+    result = {
+        
+    }
+    for flight in data:
+        return None
+    return None
 
 def get_city(keyword):
     base_url = "https://test.api.amadeus.com/v1/reference-data/locations?"
@@ -86,4 +97,4 @@ def construct_url(dict): # turns dict key=value pairs into parameters to pass th
         url_part = x + "=" + dict[x] + "&"
         params = params + url_part
     return params[:-1]
-print(get_cities_dict("lon"))
+print(get_flight_data("SYD", "JFK", "2022-12-16", "2"))

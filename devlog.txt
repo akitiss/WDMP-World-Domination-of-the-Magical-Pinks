@@ -97,61 +97,70 @@ created all html pages and linked to nav bar
 
 joshuaL -- 2022-12-09 21:24
 --------------------------------------------------------------
-Added functions to the db.py page that might be useful later
+added functions to the db.py page that might be useful later
 ==============================================================
 
 aahanM -- 2022-12-09 22:01
 --------------------------------------------------------------
-Finished a generalizable opentripmap function call! remembered
+finished a generalizable opentripmap function call! remembered
 that functions need to be returned!
 ==============================================================
 
 joshuaL -- 2022-12-10 18:00
 --------------------------------------------------------------
-Added amadeus.py with basic calling functions to get flight data and fixed some functions in db.py
+added amadeus.py with basic calling functions to get flight data and fixed some functions in db.py
 ==============================================================
 
 aprilL -- 2022-12-11 16:54
 --------------------------------------------------------------
-Fixed up nav bar and started working on login page.
+fixed up nav bar and started working on login page
 ==============================================================
 
 joshuaL -- 2022-12-11 19:07
 --------------------------------------------------------------
-Added funtion to get data on cities for a certain keyword in amadeus.py
+added funtion to get data on cities for a certain keyword in amadeus.py
 ==============================================================
 
 aprilL -- 2022-12-11 19:24
 --------------------------------------------------------------
-Reworked nav bar another time and fixed up login and signup
+reworked nav bar another time and fixed up login and signup
 ==============================================================
 
 aprilL -- 2022-12-11 12:19
 --------------------------------------------------------------
-Linked the nav bar instead of making it buttons.
+linked the nav bar instead of making it buttons
 ==============================================================
 
 joshuaL -- 2022-12-11 23:20
 --------------------------------------------------------------
-Added stuff to amadeus that parses the city data and connected the cities query to the webpage.
+added stuff to amadeus that parses the city data and connected the cities query to the webpage.
 ==============================================================
 
 yukiF -- 2022-12-12 16:20
 --------------------------------------------------------------
-Centered and added bootstrap styling to the forms.
+centered and added bootstrap styling to the forms.
 ==============================================================
 
 joshuaL -- 2022-12-13 22:38
 --------------------------------------------------------------
-Changed all api.py files to make use of the keys directory, they all need the respective key_api_name.txt file to work now.
+changed all api.py files to make use of the keys directory, they all need the respective key_api_name.txt file to work now.
 ==============================================================
 
 aprilL -- 2022-12-13 19:21
 --------------------------------------------------------------
-Added date inputs for create trips
+added date inputs for create trips
 ==============================================================
 
 joshuaL -- 2022-12-14 20:52
 --------------------------------------------------------------
-Added more db functions and a new table to store all of the places corresponding to each trip
+added more db functions and a new table to store all of the places corresponding to each trip
+==============================================================
+
+aprilL -- 2022-12-15 00:13
+--------------------------------------------------------------
+created html templates and linked them all properlly. new files: 
+- create_trip_flights
+- create_trip_activities
+- create_trip_activities_display
+- create_trip_hotels
 ==============================================================

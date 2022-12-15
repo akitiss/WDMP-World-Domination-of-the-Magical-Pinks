@@ -67,9 +67,18 @@
                 </div> 
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
             </form>
+            <br>
+
             {% for x in CITIES %}
-                <a class = "btn" href="/flights" value={{CITIES.get(x)}}> {{x}} </a>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_city" id="selected_city" value="{{CITIES.get(x)}}">
+              <label class="form-check-label" for="cities">
+                {{x}}
+              </label>
+            </div>
             {% endfor %}
+
+            <br>
 
             <form action="/create_trip_location1" method="POST">
                 <div class="form-group">
@@ -79,21 +88,19 @@
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
             </form>
             {% for x in CITIES %}
-                <a class = "btn" href="/flights" value={{CITIES.get(x)}}> {{x}} </a>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_city" id="selected_city" value="{{CITIES.get(x)}}">
+              <label class="form-check-label" for="cities">
+                {{x}}
+              </label>
+            </div>
             {% endfor %}
 
-            <!-- (ORIGINAL) 
-            <form>  
-                <div class="form-group">
-                  <label for="input-city">Location: </label>
-                  <input type="text" class="form-control" id="input-city" name="input_city" placeholder="Enter city" value={{VALUE}}>
-                </div>
-            </form>    
-            <p></p>
-
-            <form action="/create_trip_location1" method="POST">
-                <button class="user_button btn" type="submit" id="location">SUBMIT</button>
-            </form> -->
+            <br>
+            <!-- make this a post request and thats where send data to the db??? -->
+            <form action = "/post_location" method="POST">
+                <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
+            </form>
         
         </div>
     </body>

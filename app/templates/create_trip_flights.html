@@ -56,7 +56,9 @@
               <div class="card-body">
                 <h5 class="card-title">Flight time</h5>
                 <p class="card-text">Flight information.</p>
-                  <a class = "btn" href="/create_activities" value="flights"> SELECT </a>
+                  <form action = "/post_flights" method="POST">
+                    <button type = "submit" class = "btn" name="sub1" value="flights"> SELECT </button>
+                  </form>  
               </div>
             </div>
             <br>
@@ -67,8 +69,10 @@
               <div class="card-body">
                 <h5 class="card-title">Flight time</h5>
                 <p class="card-text">Flight information.</p>
-                  <a class = "btn" href="/create_activities" value="flights"> SELECT </a>
-              </div>
+                <form action = "/post_flights" method="POST">
+                  <button type = "submit" class = "btn" name="sub1" value="flights"> SELECT </button>
+                </form>  
+            </div>
             </div>
 
             

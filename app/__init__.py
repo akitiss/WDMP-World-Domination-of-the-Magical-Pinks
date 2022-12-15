@@ -64,11 +64,27 @@ def create_trip():
         city_info = get_cities_dict(previous_input)
         return render_template("create_trip_location1.html", VALUE=previous_input, CITIES=city_info)
 
+@app.route("/post_location", methods=["GET", "POST"])
+def post_location():
+    #if user DID NOT fill in all fields, return error message 
+    city = request.form.get("selected_city")
+    end_date = request.form.get("end_date")
+    start_date = request.form.get("start_date")
+    #add to db
+    return redirect(url_for("flights")) 
+    
 @app.route("/flights", methods=["GET", "POST"])
-def create_flight():
+def flights():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
     return render_template("create_trip_flights.html")
+
+@app.route("/post_flights", methods=["GET", "POST"])
+def post_flights():
+    #if user DID NOT fill in all fields, return error message 
+    city = request.form.get("flights")
+    #add to db
+    return redirect(url_for("create_activities")) 
 
 @app.route("/create_activities", methods=["GET", "POST"])
 def create_activities():

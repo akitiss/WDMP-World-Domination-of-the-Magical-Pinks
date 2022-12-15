@@ -64,6 +64,31 @@ def create_trip():
         city_info = get_cities_dict(previous_input)
         return render_template("create_trip_location1.html", VALUE=previous_input, CITIES=city_info)
 
+@app.route("/flights", methods=["GET", "POST"])
+def create_flight():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
+    return render_template("create_trip_flights.html")
+
+@app.route("/create_activities", methods=["GET", "POST"])
+def create_activities():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
+    return render_template("create_trip_activities.html")
+
+@app.route("/create_activities_display", methods=["GET", "POST"])
+def create_activities_display():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
+    return render_template("create_trip_activities_display.html")
+
+@app.route("/hotels", methods=["GET", "POST"])
+def create_hotel():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
+    return render_template("create_trip_hotels.html")
+
+
 @app.route("/saved_trips", methods=["GET", "POST"])
 def saved_trips():
     if(session.get("ID", None) == None):

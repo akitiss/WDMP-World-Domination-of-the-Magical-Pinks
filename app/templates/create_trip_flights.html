@@ -41,11 +41,44 @@
               <!--spacer-->
             </div>
           </nav>    
-          
+      
         <div class = "container-fluid p-2">
             <h1>
-                Trip Info
+                Create Trip
             </h1>
+
+            <h2> Flights </h2>
+
+            <div class="card">
+              <div class="card-header">
+                Flight company
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Flight time</h5>
+                <p class="card-text">Flight information.</p>
+                  <a class = "btn" href="/create_activities" value="flights"> SELECT </a>
+              </div>
+            </div>
+            <br>
+            <div class="card">
+              <div class="card-header">
+                Flight company
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Flight time</h5>
+                <p class="card-text">Flight information.</p>
+                  <a class = "btn" href="/create_activities" value="flights"> SELECT </a>
+              </div>
+            </div>
+
+            
+            
+            {% for x in FLIGHTS %}
+              <a class = "btn btn-primary" href="/flights" value={{FLIGHTS.get(x)}}> SELECT </a>
+            {% endfor %}
+
+            
+
         </div>
     </body>
 </html>

@@ -6,18 +6,31 @@
     color: black;
 }
 
-.user_button{
-    background-color: #2EC0F9;
-}
 
 body{
     background-color: white;
+}
+
+
+.btn{
+    background-color: #FFD166;
+}
+
+.btn:hover{
+    color: white;
+    background-color: #FFD166;
+}
+
+.user_button{
+    background-color: #2EC0F9;
 }
 
 .user_button:hover{
     color: white;
     background-color: #2EC0F9;
 }
+
+
 
 
 /* red: #FE5F55

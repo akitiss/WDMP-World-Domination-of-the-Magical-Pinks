@@ -35,26 +35,6 @@ def get_token(): # returns the token used in requests. Should be called before e
     json_file = request.json()
     return json_file["access_token"]
 
-    #origin, destination, date, time(start and end), flight company
-def get_flight_data(origin, destination, date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
-    base_url = "https://test.api.amadeus.com/v2/shopping/flight-offers?"
-    params = {
-        "originLocationCode": origin,
-        "destinationLocationCode": destination,
-        "departureDate": date,
-        "adults": number_of_passengers,
-        "max": "1"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
-    }
-    url = base_url + construct_url(params)
-    token = get_token()
-    header = {"Authorization" : "Bearer " + token}
-    request = requests.get(url, headers=header)
-    if (request.status_code != 200):
-        print("ERROR on getting flight data: status code != 200")
-        return None
-    data = request.json()
-    return data["data"] # ------unparsed data------
-
 def get_flight_dict(origin, destination, date, number_of_passengers):
     data = get_flight_data(origin, destination, date, number_of_passengers)
     if( data == None ):
@@ -98,4 +78,45 @@ def construct_url(dict): # turns dict key=value pairs into parameters to pass th
         url_part = x + "=" + dict[x] + "&"
         params = params + url_part
     return params[:-1]
-print(get_flight_data("SYD", "JFK", "2022-12-16", "2"))
+
+    #origin, destination, date, time(start and end), flight company
+def get_flight_data(origin, destination, date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
+    base_url = "https://test.api.amadeus.com/v2/shopping/flight-offers?"
+    params = {
+        "originLocationCode": origin,
+        "destinationLocationCode": destination,
+        "departureDate": date,
+        "adults": number_of_passengers,
+        "currencyCode": "USD",
+        # "nonStop": "true",
+        "max": "1"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
+    }
+    url = base_url + construct_url(params)
+    token = get_token()
+    header = {"Authorization" : "Bearer " + token}
+    request = requests.get(url, headers=header)
+    if (request.status_code != 200):
+        print("ERROR on getting flight data: status code != 200")
+        return None
+    data = request.json()
+    return data["data"] # ------unparsed data------
+
+
+    #origin, destination, date, time(start and end), flight company
+def get_flight_info(data):
+    we_want = {}
+    # for thing in data[0]:
+    #     print(""+thing+": ")
+    #     print(data[0][thing])
+    #     print('\n')
+    we_want["departure"] = data[0]['itineraries'][0]['segments']
+    for thing in data[0]['itineraries'][0]['segments']:
+        print(thing)
+    # for thing in we_want[0]:
+    #     print(thing)
+    # print(we_want)
+
+# print(get_flight_data("SYD", "JFK", "2022-12-17", "2"))
+stuff = get_flight_data("SYD", "JFK", "2022-12-17", "2")
+
+get_flight_info(stuff)

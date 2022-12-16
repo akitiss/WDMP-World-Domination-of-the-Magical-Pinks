@@ -5,6 +5,7 @@ WDMP: . . .
 from flask import Flask, session, render_template, request, redirect, url_for
 from db import *
 from amadeus import *
+from test import *
 
 app = Flask(__name__)
 app.secret_key = "tmep"
@@ -17,10 +18,12 @@ def login():
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     session_id = account_match(Input0, Input1)
+    city = get_rand_city()
+    link = get_city_img(city['city'])
     if ( session_id != None ):
         session["ID"] = session_id
         return redirect(url_for("home_page"))
-    return render_template("login.html", response="Username and passwords do not match.")
+    return render_template("login.html", bkg = city, response="Username and passwords do not match.")
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():

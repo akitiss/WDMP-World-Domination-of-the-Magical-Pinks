@@ -6,7 +6,7 @@ try:
 except FileNotFoundError:
     print("No 'key_amadeus.txt' file found in keys dir")
     api_key = None
-# SECRET KEY
+# SECRET KEYcd
 try:
     with open("keys/key_amadeus_secret.txt") as file:
         secret_key = file.read()

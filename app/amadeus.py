@@ -88,7 +88,7 @@ def get_flight_data(origin, destination, start_date, end_date, number_of_passeng
 
 def get_flight_dict(origin, destination, start_date, end_date, number_of_passengers): # Returns None if the query fails. 
     result = []
-    
+
     get_data = get_flight_data(origin, destination, start_date, end_date, number_of_passengers)
     if( get_data == None ):
         return result
@@ -135,4 +135,4 @@ def construct_url(dict): # turns dict key=value pairs into parameters to pass th
         params = params + url_part
     return params[:-1]
 
-print(get_flight_dict("SYD", "JFK", "2022-12-17", "2022-12-21", "2"))
+#print(get_flight_dict("SYD", "JFK", "2022-12-17", "2022-12-21", "2"))

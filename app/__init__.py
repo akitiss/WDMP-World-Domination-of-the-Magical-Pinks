@@ -5,7 +5,7 @@ WDMP: . . .
 from flask import Flask, session, render_template, request, redirect, url_for
 from db import *
 from amadeus import *
-from test import *
+#from test import *
 
 app = Flask(__name__)
 app.secret_key = "tmep"

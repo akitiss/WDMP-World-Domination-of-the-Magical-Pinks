@@ -62,31 +62,35 @@ def create_trip():
         return redirect(url_for("login"))
     #print(request.args.get("start"))
 
-    if(request.method == "POST"):
-        
-        
-        return render_template("create_trip_location1.html", start_value=start_city_input, end_value=end_city_input)
-
+    start_city_input = request.args.get("start_input", "")
+    end_city_input = request.args.get("end_input", "")
+    end_city_iata = request.args.get("end_iata", "")
+    start_city_iata = request.args.get("start_iata", "")
+    start_cities_dict = {}
+    end_cities_dict = {}
     if(request.args.get("start") != None):
         start_cities_dict = get_cities_dict(request.args.get("start"))
-        return render_template("create_trip_location1.html", START_CITIES=start_cities_dict)
     if(request.args.get("end") != None):
         end_cities_dict = get_cities_dict(request.args.get("end"))
-        return render_template("create_trip_location1.html", END_CITIES=end_cities_dict)
-
-    return render_template("create_trip_location1.html")
+    return render_template("create_trip_location1.html", START_CITIES=start_cities_dict, END_CITIES=end_cities_dict, start_value=start_city_input, end_value=end_city_input, IATA_S=start_city_iata, IATA_E=end_city_iata)
 
 @app.route("/search_location_from", methods=["POST"])
 def search_location_from():
     previous_input = request.form.get("input_city")
-    start_city_input = request.form.get("selected_city_start", "City Name")
-    return redirect(url_for("create_trip", start=previous_input, start_input=start_city_input))
+    iata_start = request.form.get("selected_iata_start")
+    iata_end = request.form.get("selected_iata_end")
+    end_city_input = request.form.get("selected_city_end", "")
+    start_city_input = request.form.get("selected_city_start", "")
+    return redirect(url_for("create_trip", start=previous_input, end_input=end_city_input, start_input=start_city_input, start_iata=iata_start, end_iata=iata_end))
 
 @app.route("/search_location_to", methods=["POST"])
 def search_location_to():
     previous_input = request.form.get("input_city")
-    end_city_input = request.form.get("selected_city_end", "City Name")
-    return redirect(url_for("create_trip", end=previous_input, end_input=end_city_input))
+    iata_start = request.form.get("selected_iata_start")
+    iata_end = request.form.get("selected_iata_end")
+    start_city_input = request.form.get("selected_city_start", "")
+    end_city_input = request.form.get("selected_city_end", "")
+    return redirect(url_for("create_trip", end=previous_input, end_input=end_city_input, start_input=start_city_input, start_iata=iata_start, end_iata=iata_end))
 
 @app.route("/post_location", methods=["GET", "POST"])
 def post_location():
@@ -96,6 +100,10 @@ def post_location():
     city = request.form.get("selected_city")
     end_date = request.form.get("end_date")
     start_date = request.form.get("start_date")
+    start_location = request.form.get("selected_city_start")
+    end_location = request.form.get("selected_city_end")
+    print("START: " + start_location)
+    print("END: " + end_location)
     #add to db
     return redirect(url_for("flights")) 
     

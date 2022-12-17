@@ -170,3 +170,9 @@ aprilL -- 2022-12-15 14:20
 made all submit buttons to the next page a post request
 worked on location to and from input
 ==============================================================
+
+joshuaL & aprilL -- 2022-12-16 22:57
+--------------------------------------------------------------
+added ALL THE STUFF: first page of create trip works!!!! 
+made the navbar better super good
+==============================================================

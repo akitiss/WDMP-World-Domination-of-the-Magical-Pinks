@@ -61,8 +61,6 @@ def get_cities_dict(keyword): # RETURNS a dict with {CITY_NAME : IATA_CODE} pair
         result[x["name"]] = x["iataCode"]
     return result
 
-
-
     #origin, destination, date, time(start and end), flight company
 def get_flight_data(origin, destination, start_date, end_date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
     base_url = "https://test.api.amadeus.com/v2/shopping/flight-offers?"

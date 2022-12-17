@@ -48,27 +48,6 @@
                 Create Trip
             </h1>
 
-            <div class="form-group">
-              <label for="form_user">Name Your Trip</label>
-              <input required type="text" class="form-control" name="trip_name" id="form_name" placeholder="World Pink">
-            </div>
-            <div class="form-group">
-              <label for="form_user">How many people?</label>
-              <input required type="number" class="form-control" name="trip_count" id="form_count" placeholder="4">
-            </div>
-
-
-            <br>
-            <h2> Dates </h2>
-            <div class="form-group">
-                  <label for="input-date">Start Date </label>
-                  <input required type="date" class="form-control" id="start-date" name="start_date" placeholder="MM/DD/YYYY">
-            </div>
-            <div class="form-group">
-                <label for="input-date">End Date </label>
-                <input required type="date" class="form-control" id="end-date" name="end_date" placeholder="MM/DD/YYYY">
-            </div> 
-
             <!-- JUST PLAYING AROUND HERE -->
             <h2> Location </h2>
             <form action="/search_location_from" method="POST">
@@ -76,45 +55,73 @@
                   <label for="input-city">From: </label>
                   <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{start_value}}">
                 </div> 
-                <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
+                <button class="user_button btn m-1" type="submit" id="location">Search</button>
                 <input type="hidden" name="selected_city_end" value="{{end_value}}">
+                <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+                <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
             </form>
             <br>
 
             {% for x in START_CITIES %}
             <form action="/search_location_from" method="POST">
-              <button class="btn" name="iata_start" id="selected_city" value="{{START_CITIES.get(x)}}">
+              <button class="btn" name="selected_iata_start" id="selected_city" value="{{START_CITIES.get(x)}}">
                 {{x}}
               </button>
               <input type="hidden" name="selected_city_start" value="{{x}}">
               <input type="hidden" name="selected_city_end" value="{{end_value}}">
+              <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+              <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
             </form>
             {% endfor %}
-
             <br>
-
             <form action="/search_location_to" method="POST">
                 <div class="form-group">
                   <label for="input-city">To: </label>
                   <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{end_value}}">
                 </div> 
-                <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
+                <button class="user_button btn m-1" type="submit" id="location">Search</button>
                 <input type="hidden" name="selected_city_start" value="{{start_value}}">
+                <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+                <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
             </form>
             {% for x in END_CITIES %}
             <form action="/search_location_to" method="POST">
-              <button class="btn" name="iata_end" id="selected_city" value="{{END_CITIES.get(x)}}">
+              <button class="btn" name="selected_iata_end" id="selected_city" value="{{END_CITIES.get(x)}}">
                 {{x}}
               </button>
               <input type="hidden" name="selected_city_end" value="{{x}}">
               <input type="hidden" name="selected_city_start" value="{{start_value}}">
+              <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+              <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
             </form>
             {% endfor %}
 
             <br>
-            <!-- make this a post request and thats where send data to the db??? -->
             <form action = "/post_location" method="POST">
-                <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
+              <div class="form-group">
+                <label for="form_user">Name Your Trip</label>
+                <input required type="text" class="form-control" name="trip_name" id="form_name" placeholder="World Pink">
+              </div>
+              <div class="form-group">
+                <label for="form_user">How many people?</label>
+                <input required type="number" class="form-control" name="trip_count" id="form_count" placeholder="4">
+              </div>
+              
+              <br>
+              <h2> Dates </h2>
+              <div class="form-group">
+                    <label for="input-date">Start Date </label>
+                    <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYYY">
+              </div>
+              <div class="form-group">
+                  <label for="input-date">End Date </label>
+                  <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYYY">
+              </div> 
+
+              <br>
+              <input type="hidden" name="selected_city_start" value="{{IATA_S}}">
+              <input type="hidden" name="selected_city_end" value="{{IATA_E}}">
+              <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
             </form>
         
         </div>

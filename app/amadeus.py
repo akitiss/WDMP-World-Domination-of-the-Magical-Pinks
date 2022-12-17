@@ -35,17 +35,6 @@ def get_token(): # returns the token used in requests. Should be called before e
     json_file = request.json()
     return json_file["access_token"]
 
-def get_flight_dict(origin, destination, date, number_of_passengers):
-    data = get_flight_data(origin, destination, date, number_of_passengers)
-    if( data == None ):
-        return None
-    result = {
-        
-    }
-    for flight in data:
-        return None
-    return None
-
 def get_city(keyword):
     base_url = "https://test.api.amadeus.com/v1/reference-data/locations?"
     params = {
@@ -72,24 +61,20 @@ def get_cities_dict(keyword): # RETURNS a dict with {CITY_NAME : IATA_CODE} pair
         result[x["name"]] = x["iataCode"]
     return result
 
-def construct_url(dict): # turns dict key=value pairs into parameters to pass thru the url of the request
-    params = ""
-    for x in dict:
-        url_part = x + "=" + dict[x] + "&"
-        params = params + url_part
-    return params[:-1]
+
 
     #origin, destination, date, time(start and end), flight company
-def get_flight_data(origin, destination, date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
+def get_flight_data(origin, destination, start_date, end_date, number_of_passengers): # (date is in yyyy-mm-dd) RETURNS None if request fails
     base_url = "https://test.api.amadeus.com/v2/shopping/flight-offers?"
     params = {
         "originLocationCode": origin,
         "destinationLocationCode": destination,
-        "departureDate": date,
+        "departureDate": start_date,
         "adults": number_of_passengers,
         "currencyCode": "USD",
+        "returnDate": end_date,
         # "nonStop": "true",
-        "max": "1"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
+        "max": "10"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
     }
     url = base_url + construct_url(params)
     token = get_token()
@@ -99,10 +84,37 @@ def get_flight_data(origin, destination, date, number_of_passengers): # (date is
         print("ERROR on getting flight data: status code != 200")
         return None
     data = request.json()
-    return data["data"] # ------unparsed data------
+    return data # ------unparsed data------
+
+def get_flight_dict(origin, destination, start_date, end_date, number_of_passengers): # Returns None if the query fails. 
+    result = []
+    
+    get_data = get_flight_data(origin, destination, start_date, end_date, number_of_passengers)
+    if( get_data == None ):
+        return result
+    
+    data = get_data["data"]
+    codes = get_data["dictionaries"]
+
+    for flight in data:
+        # get company:
+        company_code = flight["validatingAirlineCodes"][0]
+        company = codes["carriers"][company_code]
+        # make the dictionary:
+        flight_data = {
+            "start-time": flight["itineraries"][0]["segments"][0]["departure"]["at"],
+            "end-time": flight["itineraries"][1]["segments"][-1]["arrival"]["at"],
+            "price": flight["price"]["total"],
+            "company": company,
+        }
+        result.append(flight_data)
+
+    return result 
+    # Will return a dictionary with an array of dictionaries. 
+    # Each dictionary will have: start-time: "yyyy-mm-dd", end-time: "yyyy-mm-dd", price: "total_price", company: "company",
 
 
-    #origin, destination, date, time(start and end), flight company
+#origin, destination, date, time(start and end), flight company
 def get_flight_info(data):
     we_want = {}
     # for thing in data[0]:
@@ -116,7 +128,11 @@ def get_flight_info(data):
     #     print(thing)
     # print(we_want)
 
-# print(get_flight_data("SYD", "JFK", "2022-12-17", "2"))
-stuff = get_flight_data("SYD", "JFK", "2022-12-17", "2")
+def construct_url(dict): # turns dict key=value pairs into parameters to pass thru the url of the request
+    params = ""
+    for x in dict:
+        url_part = x + "=" + dict[x] + "&"
+        params = params + url_part
+    return params[:-1]
 
-get_flight_info(stuff)
+print(get_flight_dict("SYD", "JFK", "2022-12-17", "2022-12-21", "2"))

@@ -113,7 +113,7 @@ def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None 
     places = [id[0] for id in data]
     c.close()
     return places
-print(get_places(-1))
+#print(get_places(-1))
 #print(get_trip_info(-1))
 #print(get_savedtrips(-45))
 #print(add_place(-1, -2))

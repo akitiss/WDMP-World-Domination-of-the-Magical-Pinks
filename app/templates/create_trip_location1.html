@@ -62,49 +62,53 @@
             <h2> Dates </h2>
             <div class="form-group">
                   <label for="input-date">Start Date </label>
-                  <input required type="date" class="form-control" id="start-date" name="start_date" placeholder="MM/DD/YYYY" value={{VALUE}}>
+                  <input required type="date" class="form-control" id="start-date" name="start_date" placeholder="MM/DD/YYYY">
             </div>
             <div class="form-group">
                 <label for="input-date">End Date </label>
-                <input required type="date" class="form-control" id="end-date" name="end_date" placeholder="MM/DD/YYYY" value={{VALUE}}>
+                <input required type="date" class="form-control" id="end-date" name="end_date" placeholder="MM/DD/YYYY">
             </div> 
 
             <!-- JUST PLAYING AROUND HERE -->
             <h2> Location </h2>
-            <form action="/create_trip_location1" method="POST">
+            <form action="/search_location_from" method="POST">
                 <div class="form-group">
                   <label for="input-city">From: </label>
-                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value={{VALUE}}>
+                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{start_value}}">
                 </div> 
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
+                <input type="hidden" name="selected_city_end" value="{{end_value}}">
             </form>
             <br>
 
-            {% for x in CITIES %}
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="selected_city" id="selected_city" value="{{CITIES.get(x)}}">
-              <label class="form-check-label" for="cities">
+            {% for x in START_CITIES %}
+            <form action="/search_location_from" method="POST">
+              <button class="btn" name="iata_start" id="selected_city" value="{{START_CITIES.get(x)}}">
                 {{x}}
-              </label>
-            </div>
+              </button>
+              <input type="hidden" name="selected_city_start" value="{{x}}">
+              <input type="hidden" name="selected_city_end" value="{{end_value}}">
+            </form>
             {% endfor %}
 
             <br>
 
-            <form action="/create_trip_location1" method="POST">
+            <form action="/search_location_to" method="POST">
                 <div class="form-group">
                   <label for="input-city">To: </label>
-                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value={{VALUE}}>
+                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{end_value}}">
                 </div> 
                 <button class="user_button btn m-1" type="submit" id="location">SUBMIT</button>
+                <input type="hidden" name="selected_city_start" value="{{start_value}}">
             </form>
-            {% for x in CITIES %}
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="selected_city" id="selected_city" value="{{CITIES.get(x)}}">
-              <label class="form-check-label" for="cities">
+            {% for x in END_CITIES %}
+            <form action="/search_location_to" method="POST">
+              <button class="btn" name="iata_end" id="selected_city" value="{{END_CITIES.get(x)}}">
                 {{x}}
-              </label>
-            </div>
+              </button>
+              <input type="hidden" name="selected_city_end" value="{{x}}">
+              <input type="hidden" name="selected_city_start" value="{{start_value}}">
+            </form>
             {% endfor %}
 
             <br>

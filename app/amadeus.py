@@ -113,21 +113,6 @@ def get_flight_dict(origin, destination, start_date, end_date, number_of_passeng
     # Will return a dictionary with an array of dictionaries. 
     # Each dictionary will have: start-time: "yyyy-mm-dd", end-time: "yyyy-mm-dd", price: "total_price", company: "company",
 
-
-#origin, destination, date, time(start and end), flight company
-def get_flight_info(data):
-    we_want = {}
-    # for thing in data[0]:
-    #     print(""+thing+": ")
-    #     print(data[0][thing])
-    #     print('\n')
-    we_want["departure"] = data[0]['itineraries'][0]['segments']
-    for thing in data[0]['itineraries'][0]['segments']:
-        print(thing)
-    # for thing in we_want[0]:
-    #     print(thing)
-    # print(we_want)
-
 def construct_url(dict): # turns dict key=value pairs into parameters to pass thru the url of the request
     params = ""
     for x in dict:

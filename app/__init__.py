@@ -18,8 +18,8 @@ def login():
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     session_id = account_match(Input0, Input1)
-    city = get_rand_city()
-    link = get_city_img(city['city'])
+    #city = get_rand_city()
+    #link = get_city_img(city['city'])
     if ( session_id != None ):
         session["ID"] = session_id
         return redirect(url_for("home_page"))
@@ -60,12 +60,33 @@ def register_page():
 def create_trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    if(request.method == "GET"):
-        return render_template("create_trip_location1.html")
-    else:
-        previous_input = request.form.get("input_city")
-        city_info = get_cities_dict(previous_input)
-        return render_template("create_trip_location1.html", VALUE=previous_input, CITIES=city_info)
+    #print(request.args.get("start"))
+
+    if(request.method == "POST"):
+        
+        
+        return render_template("create_trip_location1.html", start_value=start_city_input, end_value=end_city_input)
+
+    if(request.args.get("start") != None):
+        start_cities_dict = get_cities_dict(request.args.get("start"))
+        return render_template("create_trip_location1.html", START_CITIES=start_cities_dict)
+    if(request.args.get("end") != None):
+        end_cities_dict = get_cities_dict(request.args.get("end"))
+        return render_template("create_trip_location1.html", END_CITIES=end_cities_dict)
+
+    return render_template("create_trip_location1.html")
+
+@app.route("/search_location_from", methods=["POST"])
+def search_location_from():
+    previous_input = request.form.get("input_city")
+    start_city_input = request.form.get("selected_city_start", "City Name")
+    return redirect(url_for("create_trip", start=previous_input, start_input=start_city_input))
+
+@app.route("/search_location_to", methods=["POST"])
+def search_location_to():
+    previous_input = request.form.get("input_city")
+    end_city_input = request.form.get("selected_city_end", "City Name")
+    return redirect(url_for("create_trip", end=previous_input, end_input=end_city_input))
 
 @app.route("/post_location", methods=["GET", "POST"])
 def post_location():

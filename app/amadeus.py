@@ -6,7 +6,7 @@ try:
 except FileNotFoundError:
     print("No 'key_amadeus.txt' file found in keys dir")
     api_key = None
-# SECRET KEYcd
+# SECRET KEY
 try:
     with open("keys/key_amadeus_secret.txt") as file:
         secret_key = file.read()
@@ -72,7 +72,7 @@ def get_flight_data(origin, destination, start_date, end_date, number_of_passeng
         "currencyCode": "USD",
         "returnDate": end_date,
         # "nonStop": "true",
-        "max": "10"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
+        "max": "20"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
     }
     url = base_url + construct_url(params)
     token = get_token()
@@ -108,7 +108,7 @@ def get_flight_dict(origin, destination, start_date, end_date, number_of_passeng
         result.append(flight_data)
 
     return result 
-    # Will return a dictionary with an array of dictionaries. 
+    # Will return an array of dictionaries. 
     # Each dictionary will have: start-time: "yyyy-mm-dd", end-time: "yyyy-mm-dd", price: "total_price", company: "company",
 
 def construct_url(dict): # turns dict key=value pairs into parameters to pass thru the url of the request

@@ -24,7 +24,7 @@
                     </span>   
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class = "navbar_text nav-link" href="/create_trip_location1"> CREATE TRIP </a>                
+                      <a class = "navbar_text nav-link" href="/create_trip_location"> CREATE TRIP </a>                
                     </li>
                     <li class="nav-item">
                       <a class = "navbar_text nav-link" href="/saved_trips"> SAVED TRIPS </a>                
@@ -97,7 +97,7 @@
             {% endfor %}
 
             <br>
-            <form action = "/post_location" method="POST">
+            <form action = "/flights" method="POST">
               <div class="form-group">
                 <label for="form_user">Name Your Trip</label>
                 <input required type="text" class="form-control" name="trip_name" id="form_name" placeholder="World Pink">
@@ -119,8 +119,10 @@
               </div> 
 
               <br>
-              <input type="hidden" name="selected_city_start" value="{{IATA_S}}">
-              <input type="hidden" name="selected_city_end" value="{{IATA_E}}">
+              <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+              <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
+              <input type="hidden" name="selected_city_start" value="{{start_value}}">
+              <input type="hidden" name="selected_city_end" value="{{end_value}}">
               <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
             </form>
         

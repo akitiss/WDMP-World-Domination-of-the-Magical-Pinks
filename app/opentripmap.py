@@ -61,8 +61,10 @@ def get_places(city, radius, kind, limit):
 def get_hotels(city, limit):
     return get_places(city, 5000, "other_hotels", limit)
 
+def get_(city, limit):
+    return get_places(city, 5000, "other_hotels", limit)
+
 def get_naughty(city, limit):
     return get_places(city, 5000, "adult", limit)
 
-x = get_naughty('Paris', 10)
-print(x)
+#x = get_naughty('Paris', 10)

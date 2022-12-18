@@ -13,12 +13,13 @@ body{
 
 
 .btn{
-    background-color: #FFD166;
+    background-color: #ffd166;
+    color: black;
 }
 
 .btn:hover{
-    color: white;
-    background-color: #FFD166;
+    color: black;
+    background-color: #fe5f55;
 }
 
 .user_button{
@@ -30,16 +31,23 @@ body{
     background-color: #2EC0F9;
 }
 
+.card-header{
+    background-color: #2EC0F9;
+    color: black;
+}
 
+.card-body{
+    background-color: white;
+}
   
 .login_background{
-    background-image: url('https://images.unsplash.com/photo-1580895456895-cfdf02e4c23f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eSUyMG5pZ2h0JTIwbGlnaHRzfGVufDB8fDB8fA%3D%3D&w=1000&q=80');
+    background-image: url('../images/login_background.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .register_background{
-    background-image: url('https://c4.wallpaperflare.com/wallpaper/562/643/686/night-city-city-lights-skyscraper-new-york-wallpaper-preview.jpg');
+    background-image: url('../images/register_background.jpg');
     background-size: cover;
     background-position: center;
 }

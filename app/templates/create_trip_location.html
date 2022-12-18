@@ -20,8 +20,11 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                     <span class="navbar-brand"> 
-                      <a class="nav-link text-white fs-4 p-1" href="/"> Trippin </a>
-                    </span>   
+                      <a class="navbar-brand" href="/">
+                        <img src="../static/images/navbar_logo.jpg" width="50" height="50" class="rounded">
+                        Trippin'
+                      </a>
+                        </span>   
                   <ul class="navbar-nav">
                     <li class="nav-item">
                       <a class = "navbar_text nav-link" href="/create_trip_location"> CREATE TRIP </a>                
@@ -42,15 +45,17 @@
                 </div>
               </nav>    
           
+              
 
-        <div class = "container-fluid p-2">
-            <h1>
-                Create Trip
-            </h1>
-
+        <div class = "container align-items center py-3 w-50">
+          <h1 class="text-center">
+            Create Trip
+          </h1>
             <!-- JUST PLAYING AROUND HERE -->
             <h2> Location </h2>
-            <form action="/search_location_from" method="POST">
+            <div class = "row">
+            <div class = "col-sm">
+              <form action="/search_location_from" method="POST">
                 <div class="form-group">
                   <label for="input-city">From: </label>
                   <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{start_value}}">
@@ -59,42 +64,45 @@
                 <input type="hidden" name="selected_city_end" value="{{end_value}}">
                 <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
                 <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
-            </form>
+              </form>
+              
+              {% for x in START_CITIES %}
+              <form action="/search_location_from" method="POST">
+                <button class="btn" name="selected_iata_start" id="selected_city" value="{{START_CITIES.get(x)}}">
+                  {{x}}
+                </button>
+                <input type="hidden" name="selected_city_start" value="{{x}}">
+                <input type="hidden" name="selected_city_end" value="{{end_value}}">
+                <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+                <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
+              </form>
+              {% endfor %}
+            </div>
             <br>
-
-            {% for x in START_CITIES %}
-            <form action="/search_location_from" method="POST">
-              <button class="btn" name="selected_iata_start" id="selected_city" value="{{START_CITIES.get(x)}}">
-                {{x}}
-              </button>
-              <input type="hidden" name="selected_city_start" value="{{x}}">
-              <input type="hidden" name="selected_city_end" value="{{end_value}}">
-              <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
-              <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
-            </form>
-            {% endfor %}
-            <br>
-            <form action="/search_location_to" method="POST">
-                <div class="form-group">
-                  <label for="input-city">To: </label>
-                  <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{end_value}}">
-                </div> 
-                <button class="user_button btn m-1" type="submit" id="location">Search</button>
+            <div class ="col-sm">
+              <form action="/search_location_to" method="POST">
+                  <div class="form-group">
+                    <label for="input-city">To: </label>
+                    <input required type="text" class="form-control" id="input-city" name="input_city" placeholder="City Name" value="{{end_value}}">
+                  </div> 
+                  <button class="user_button btn m-1" type="submit" id="location">Search</button>
+                  <input type="hidden" name="selected_city_start" value="{{start_value}}">
+                  <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
+                  <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
+              </form>
+              {% for x in END_CITIES %}
+              <form action="/search_location_to" method="POST">
+                <button class="btn" name="selected_iata_end" id="selected_city" value="{{END_CITIES.get(x)}}">
+                  {{x}}
+                </button>
+                <input type="hidden" name="selected_city_end" value="{{x}}">
                 <input type="hidden" name="selected_city_start" value="{{start_value}}">
                 <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
                 <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
-            </form>
-            {% for x in END_CITIES %}
-            <form action="/search_location_to" method="POST">
-              <button class="btn" name="selected_iata_end" id="selected_city" value="{{END_CITIES.get(x)}}">
-                {{x}}
-              </button>
-              <input type="hidden" name="selected_city_end" value="{{x}}">
-              <input type="hidden" name="selected_city_start" value="{{start_value}}">
-              <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
-              <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
-            </form>
-            {% endfor %}
+              </form>
+              {% endfor %}
+            </div>
+          </div>
 
             <br>
             <form action = "/flights" method="POST">
@@ -109,21 +117,25 @@
               
               <br>
               <h2> Dates </h2>
-              <div class="form-group">
-                    <label for="input-date">Start Date </label>
-                    <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYYY">
-              </div>
-              <div class="form-group">
-                  <label for="input-date">End Date </label>
-                  <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYYY">
-              </div> 
-
+              <div class = "row">
+                <div class = "col">
+                  <div class="form-group">
+                        <label for="input-date">Start Date </label>
+                        <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYYY">
+                  </div>
+                </div>
+                <div class = "col">
+                  <div class="form-group">
+                      <label for="input-date">End Date </label>
+                      <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYYY">
+                  </div> 
+                </div>
               <br>
               <input type="hidden" name="selected_iata_start" value="{{IATA_S}}">
               <input type="hidden" name="selected_iata_end" value="{{IATA_E}}">
               <input type="hidden" name="selected_city_start" value="{{start_value}}">
               <input type="hidden" name="selected_city_end" value="{{end_value}}">
-              <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
+              <button type = "submit" class = "btn mt-3 p-3" name="sub1" value="submit"> SUBMIT </button>
             </form>
         
         </div>

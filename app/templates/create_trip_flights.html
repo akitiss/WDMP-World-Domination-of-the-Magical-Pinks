@@ -20,7 +20,10 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
                 <span class="navbar-brand"> 
-                  <a class="nav-link text-white fs-4 p-1" href="/"> Trippin </a>
+                  <a class="navbar-brand" href="/">
+                    <img src="../static/images/navbar_logo.jpg" width="50" height="50" class="rounded">
+                    Trippin'
+                  </a>
                 </span>   
               <ul class="navbar-nav">
                 <li class="nav-item">
@@ -42,22 +45,28 @@
             </div>
           </nav>    
       
-        <div class = "container-fluid p-2">
-            <h1>
-                Create Trip
+          <div class = "container align-items center py-3 w-60">
+            <h1 class="text-center">
+                  Create Trip
             </h1>
 
             <h2> Flights </h2>
             
+            <div class = "row g-0">
 
             {% for x in FLIGHTS %}
-              <div class="card">
+            <div class = "col">
+              <div class="card my-2 mx-1" style="width: 25rem;">
                 <div class="card-header">
                   {{x["company"]}}
                 </div>
                 <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
-                  <h5 class="card-title">{{x["start-time"][0]}} {{x["start-time"][1]}} TO {{x["end-time"][0]}} {{x["end-time"][1]}}</h5>
-                  <p class="card-text"> ${{x["price"]}} Count: {{COUNT}}</p>
+                  <h5 class="card-title">Roundtrip</h5>
+                  <p class="card-text"> 
+                    Departure Flight: {{x["start-time"][1]}} on {{x["start-time"][0]}}<br>
+                    Return Flight: {{x["end-time"][1]}} on {{x["end-time"][0]}} <br>
+                    Total Price: ${{x["price"]}}</p>
+                  
                   <form action = "/post_flights" method="POST">
                     <input type="hidden" name="trip_count" value={{COUNT}}>
                     <input type="hidden" name="trip_name" value={{NAME}}>
@@ -71,10 +80,9 @@
                   </form>  
                 </div>
               </div>
+            </div>
             {% endfor %}
-
-            
-
-        </div>
+            </div>
+          </div>
     </body>
 </html>

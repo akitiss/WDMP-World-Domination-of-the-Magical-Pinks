@@ -72,7 +72,7 @@ def get_flight_data(origin, destination, start_date, end_date, number_of_passeng
         "currencyCode": "USD",
         "returnDate": end_date,
         # "nonStop": "true",
-        "max": "20"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
+        "max": "21"  #      ----------------ONLY GIVES THIS MANY ENTRIES----------------
     }
     url = base_url + construct_url(params)
     token = get_token()

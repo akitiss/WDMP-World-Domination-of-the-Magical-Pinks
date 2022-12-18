@@ -13,46 +13,57 @@
     <link rel="stylesheet" href="../static/css/wdmp.css">
 </head>
 
-  <body>
-    <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
-      <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <span class="navbar-brand"> 
-            <a class="nav-link text-white fs-4 p-1" href="/"> Trippin </a>
-      </span>   
-</nav>
+<body class="login">
 
-    <div class="container-fluid p-5 justify-content-center">
-      <h1 class="text-center">
-        Login 
-      </h1>
-      <div class="container-fluid w-50">
-        <form class="px-4 py-3" action ="/login" method="POST">
+<div class="container-fluid" style = "height: 100vh">
+  <div class="row">
+    <div class="col login_background" style = "height:100vh"></div>
+    <div class="col">
+      <div class=" d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col col-lg-8 mx-auto">
 
-          <div class="form-group">
-            <label for="form_user">Username</label>
-            <input required type="text" class="form-control" name="username" id="form_user" placeholder="Username">
+              <a href="/">
+                <img src = "https://play-lh.googleusercontent.com/XNV2ECGa98knUQF6v9q9EKnZMahQL9wDvSBgLoYTzSOtctTYbWEq-b5UOsCC5wzrk8Q" class="rounded mx-auto d-block" style = "height: 80px; width:80px">
+              </a>
+              <h3 class="login-heading m-3 text-center">Login</h3>
+
+              <!-- Sign In Form -->
+              <form class="px-4 py-3" action ="/login" method="POST">
+
+                <div class="form-floating m-3">
+                  <input required type="text" class="form-control" name="username" id="form-user" placeholder="Username">
+                  <label for="form_user">Username</label>
+
+                </div>
+      
+                <div class="form-floating m-3">
+                  <input required type="password" class="form-control" name="password" id="form-password" placeholder="Password">    
+                  <label for="form_password">Password</label>
+                </div>
+      
+                <div class="text-center mt-4">
+                  <button type="submit" class="user_button btn btn-lg" name="sub1" value="Sign In">Login</button>
+                </div>
+              </form>
+              <p class="text-center text-danger">{{response}}</p>   
+              
+              <div class="container-fluid text-center mt-5">
+                <p> Don't have an account? </p> 
+                <form action="/register" method="GET">
+                  <button class="user_button btn btn-lg" value="register" name="sub1">Sign Up</button>
+                </form>  
+              </div> <!-- close register container -->
+          
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-          <div class="form-group">
-            <label for="form_password">Password</label>
-            <input required type="password" class="form-control" name="password" id="form_password" placeholder="Password">    
-          </div>
 
-          <div class="text-center">
-            <br><button type="submit" class="user_button btn" name="sub1" value="Sign In">Login</button>
-          </div>
-        </form>
-        <p class="text-center">{{response}}</p>
-      </div> 
-    </div> <!-- close container to center stuff -->
-    <div class="container-fluid text-center">
-      <p> Don't have an account? </p> 
-      <form action="/register" method="GET">
-        <button class="user_button btn" value="register" name="sub1">Sign Up</button>
-      </form>  
-    </div> <!-- close register container -->
   </body>
 </html>

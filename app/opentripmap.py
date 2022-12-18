@@ -69,6 +69,9 @@ def get_places(city, radius, categories, limit ):
 def get_hotels(city, limit):
     return get_place(city, 5000, "other_hotels", limit)
 
+def get_(city, limit):
+    return get_places(city, 5000, "other_hotels", limit)
+
 def get_naughty(city, limit):
     return get_place(city, 5000, "adult", limit)
 
@@ -76,3 +79,4 @@ x = get_places('Athens', 5000, ['malls', 'other_hotels'], 10)
 print(x)
 
 Endpoints = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+#x = get_naughty('Paris', 10)

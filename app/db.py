@@ -4,11 +4,11 @@ DB_FILE = "test.db"
 
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor() # Create the three tables if they dont exist yet
-c.executescript(""" 
-    create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
+c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
-    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, trip_name text, country text, city text, hotel text);
+    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, hotel int, end_date text, start_date text, start_location text, end_location text, trip_count int);
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id int, PRIMARY KEY (trip_id, place_id));
+    create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
 """)
 c.close()
 
@@ -48,15 +48,15 @@ def account_match(username, password): # if it matches, return u_id, else return
     else:
         return None
 
-def add_saved_trip(user_ID, trip_name, country, city, hotel): # This adds to both: Use this one instead of the other
+def add_saved_trip(user_ID, trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company): # This adds to both: USE THIS
     # add trip info to tripinfo table.
-    trip_ID = add_trip_info(trip_name, country, city, hotel)
+    trip_ID = add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company)
     c = db.cursor()
     c.execute("insert into savedtrips values(?, ?)", (user_ID, trip_ID))
     db.commit()
     c.close()
 
-def add_trip_info(trip_name, country, city, hotel):
+def add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company): # USE THE ABOVE METHOD TO ADD ALL
     c = db.cursor()
     c.execute("SELECT MAX(trip_id) FROM tripinfo")
     max_id = c.fetchone()
@@ -64,7 +64,21 @@ def add_trip_info(trip_name, country, city, hotel):
         new_id = max_id[0] + 1
     else:
         new_id = 0
-    c.execute("insert into tripinfo values(?, ? , ? , ?)", (new_id, str(trip_name),str(country), str(city), str(hotel)))
+    flight_id = add_flight_info(start_location, end_location, start_date, end_date, price, company, trip_count)
+    c.execute("insert into tripinfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)", (new_id, flight_id, str(trip_name), hotel, str(end_date), str(start_date), str(start_location), str(end_location), str(trip_count)))
+    db.commit()
+    c.close()
+    return new_id
+
+def add_flight_info(start_location, end_location, start_time, end_time, price, company, count): # DONT CALL THIS USE add_saved_trip instead
+    c = db.cursor()
+    c.execute("SELECT MAX(flight_id) FROM flight")
+    max_id = c.fetchone()
+    if (max_id[0] != None):
+        new_id = max_id[0] + 1
+    else:
+        new_id = 0
+    c.execute("insert into flight values(?, ?, ?, ?, ?, ?, ?, ?)", (new_id, start_location, end_location, start_time, end_time, price, company, count))
     db.commit()
     c.close()
     return new_id
@@ -76,7 +90,6 @@ def add_place(trip_id, place_id):
     if(check != None):
         c.close()
         return False
-    #print(check
     c.execute("insert into trip_places values(?, ?)", (trip_id, place_id))
     db.commit()
     c.close()
@@ -93,7 +106,7 @@ def get_savedtrips(ID): # ID is a u_id. Fetches a list of all trip_ids that a us
     
     return trips
 
-def get_trip_info(ID): # ID is a trip_id. returns a tuple with all the data in a trip (id, name, country, city, hotel), or None if none
+def get_trip_info(ID): # ID is a trip_id. ------WIP------
     c = db.cursor()
     c.execute("select * from tripinfo where (trip_id = ?)", (ID,))
     data = c.fetchall()
@@ -113,6 +126,7 @@ def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None 
     places = [id[0] for id in data]
     c.close()
     return places
+#print(add_flight_info(1000))
 #print(get_places(-1))
 #print(get_trip_info(-1))
 #print(get_savedtrips(-45))

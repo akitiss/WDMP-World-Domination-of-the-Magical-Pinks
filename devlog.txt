@@ -176,3 +176,20 @@ joshuaL & aprilL -- 2022-12-16 22:57
 added ALL THE STUFF: first page of create trip works!!!! 
 made the navbar better super good
 ==============================================================
+
+joshuaL & aprilL & aahanM -- 2022-12-17 23:08
+--------------------------------------------------------------
+worked on second part of create trip (activities!!)
+displayed flights
+==============================================================
+
+joshuaL -- 2022-12-18 00:44
+--------------------------------------------------------------
+changed database so it adds to tables after submitting flights
+know the way of the checkboxes 
+==============================================================
+
+aprilL -- 2022-12-18 00:44
+--------------------------------------------------------------
+login page and register page LOOK SAUR FIRE
+==============================================================

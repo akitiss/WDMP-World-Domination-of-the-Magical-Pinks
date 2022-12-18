@@ -4,11 +4,11 @@ DB_FILE = "test.db"
 
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor() # Create the three tables if they dont exist yet
-c.executescript(""" 
-    create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
+c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
-    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, trip_name text, country text, city text, hotel text);
+    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, trip_name text, city text, hotel text, end_date text, start_date text, start_location text, end_location text, trip_count int);
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id int, PRIMARY KEY (trip_id, place_id));
+    create TABLE if NOT EXISTS flight(hello int);
 """)
 c.close()
 

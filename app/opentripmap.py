@@ -12,7 +12,7 @@ except FileNotFoundError:
     key = None
 
 #image, name, location, wikpedia link, description 
-def get_places(city, radius, kind, limit): 
+def get_place(city, radius, kind, limit): 
 
     city_info = f"https://api.opentripmap.com/0.1/en/places/geoname?name={city}&apikey={key}"
     city_json = requests.get(city_info)
@@ -58,11 +58,21 @@ def get_places(city, radius, kind, limit):
     # print(places_list)
     return master_place_details
 
+def get_places(city, radius, categories, limit ):
+    places_max = int(limit / len(categories))
+    details_master = {}
+    for category in categories:
+        details_master.update(get_place(city, 5000, category, places_max))
+    return details_master
+
+
 def get_hotels(city, limit):
-    return get_places(city, 5000, "other_hotels", limit)
+    return get_place(city, 5000, "other_hotels", limit)
 
 def get_naughty(city, limit):
-    return get_places(city, 5000, "adult", limit)
+    return get_place(city, 5000, "adult", limit)
 
-x = get_naughty('Paris', 10)
+x = get_places('Athens', 5000, ['malls', 'other_hotels'], 10)
 print(x)
+
+Endpoints = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']

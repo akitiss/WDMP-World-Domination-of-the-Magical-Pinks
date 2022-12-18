@@ -23,7 +23,7 @@ def login():
     if ( session_id != None ):
         session["ID"] = session_id
         return redirect(url_for("home_page"))
-    return render_template("login.html", bkg = city, response="Username and passwords do not match.")
+    return render_template("login.html", response="Username and passwords do not match.")
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():
@@ -43,7 +43,7 @@ def logout():
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
     if( request.method == "GET"): # display page
-        return render_template("register.html", status="Enter a username and password")
+        return render_template("register.html")
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     Input2 = request.form.get("password_confirm")

@@ -166,12 +166,14 @@ def create_activities_display():
     for x in act_list:
         if(request.form.get(x, "False") == "True"):
             selected_activities.append(x)
-            print("selected: " + x)
-    print("CITY: " + city)
-    print("ALL SELECTED: " + str(selected_activities))
-    print("CCOUNT: " + str(activity_count))
+            #print("selected: " + x)
+    if(len(selected_activities) == 0):
+        return render_template("create_trip_activities_display.html") # ERROR user didnt select any activities
+    # print("CITY: " + city)
+    # print("ALL SELECTED: " + str(selected_activities))
+    # print("CCOUNT: " + str(activity_count))
     places_dict = get_places(city, 5000, selected_activities, int(activity_count)) 
-    print("PLACES_DICT: " + str(places_dict))
+    #print("PLACES_DICT: " + str(places_dict))
     # change places_dict to more managable data
     data = []
     for place_dict in places_dict:
@@ -182,7 +184,7 @@ def create_activities_display():
             }
             add_place(trip_id, place_dict[place]["xid"]) # adds place to DB
             data.append(info)
-    print("DATA: "+ str(data))
+    #print("DATA: "+ str(data))
     return render_template("create_trip_activities_display.html", ACTIVITIES=data)
 
 @app.route("/hotels", methods=["GET", "POST"])

@@ -24,7 +24,7 @@ def login():
     if ( session_id != None ):
         session["ID"] = session_id
         return redirect(url_for("home_page"))
-    return render_template("login.html", bkg = city, response="Username and passwords do not match.")
+    return render_template("login.html", response="Username and passwords do not match.")
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():
@@ -44,7 +44,7 @@ def logout():
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
     if( request.method == "GET"): # display page
-        return render_template("register.html", status="Enter a username and password")
+        return render_template("register.html")
     Input0 = request.form.get("username")
     Input1 = request.form.get("password")
     Input2 = request.form.get("password_confirm")
@@ -57,7 +57,7 @@ def register_page():
     else:
         return render_template("register.html", status="Passwords do not match.")
 
-@app.route("/create_trip_location1", methods=["GET", "POST"])
+@app.route("/create_trip_location", methods=["GET", "POST"])
 def create_trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
@@ -73,7 +73,7 @@ def create_trip():
         start_cities_dict = get_cities_dict(request.args.get("start"))
     if(request.args.get("end") != None):
         end_cities_dict = get_cities_dict(request.args.get("end"))
-    return render_template("create_trip_location1.html", START_CITIES=start_cities_dict, END_CITIES=end_cities_dict, start_value=start_city_input, end_value=end_city_input, IATA_S=start_city_iata, IATA_E=end_city_iata)
+    return render_template("create_trip_location.html", START_CITIES=start_cities_dict, END_CITIES=end_cities_dict, start_value=start_city_input, end_value=end_city_input, IATA_S=start_city_iata, IATA_E=end_city_iata)
 
 @app.route("/search_location_from", methods=["POST"])
 def search_location_from():
@@ -98,7 +98,7 @@ def flights():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
     if(request.method == "POST"):
-        trip_name = request.form.get("trip_name") # -----------------------POST DATA TO DB-----------------------
+        trip_name = request.form.get("trip_name")
         trip_count = request.form.get("trip_count")
         end_date = request.form.get("end_date")
         start_date = request.form.get("start_date")
@@ -121,22 +121,25 @@ def flights():
 
 @app.route("/post_flights", methods=["GET", "POST"])
 def post_flights():
-    #if user DID NOT fill in all fields, return error message 
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
     start_location = request.form.get("start_location")
     end_location = request.form.get("end_location")
     count = request.form.get("trip_count")
+    name = request.form.get("trip_name")
     end_date = request.form.get("end_date")
     start_date = request.form.get("start_date")
     price = request.form.get("price")
     company = request.form.get("company")
-    print("START DATE: " + start_date)
-    print("END DATE: " + end_date)
-    print("price: " + price)
-    print("company: " + company)
-    print("count: " + count)
-    print("start_location: " + start_location)
-    print("end_location: " + end_location)
-    # --------------------- add to db ---------------------
+    # print("START DATE: " + start_date)
+    # print("END DATE: " + end_date)
+    # print("price: " + price)
+    # print("company: " + company)
+    # print("count: " + count)
+    # print("start_location: " + start_location)
+    # print("end_location: " + end_location)
+    #                               --------------------- add to db ---------------------
+    add_saved_trip(session.get("ID"), name, -1, end_date, start_date, start_location, end_location, count, price, company)
     return redirect(url_for("create_activities", Location=end_location))
 
 @app.route("/create_activities", methods=["GET", "POST"])
@@ -146,13 +149,16 @@ def create_activities():
     
     location = request.args.get("Location", None)
     if ( location == None):
-        return render_template("create_trip_activities.html")
+        return redirect(url_for("create_trip"))
     return render_template("create_trip_activities.html", LOCATION=location)
 
 @app.route("/post_activities", methods=["GET", "POST"])
 def post_activities():
     #if user DID NOT fill in all fields, return error message 
-    activity_count = request.form.get("activity_count")
+    activity0 = request.form.get("Outdoor", "False")
+    activity1 = request.form.get("Super fun", "False")
+    print("activity0: " + activity0)
+    print("activity1: " + activity1)
     #add to db
     return redirect(url_for("create_activities_display"))
 

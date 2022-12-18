@@ -24,7 +24,7 @@
                 </span>   
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class = "navbar_text nav-link" href="/create_trip_location1"> CREATE TRIP </a>                
+                  <a class = "navbar_text nav-link" href="/create_trip_location"> CREATE TRIP </a>                
                 </li>
                 <li class="nav-item">
                   <a class = "navbar_text nav-link" href="/saved_trips"> SAVED TRIPS </a>                
@@ -57,11 +57,12 @@
                 </div>
                 <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
                   <h5 class="card-title">{{x["start-time"][0]}} {{x["start-time"][1]}} TO {{x["end-time"][0]}} {{x["end-time"][1]}}</h5>
-                  <p class="card-text"> ${{x["price"]}}</p>
+                  <p class="card-text"> ${{x["price"]}} Count: {{COUNT}}</p>
                   <form action = "/post_flights" method="POST">
                     <input type="hidden" name="trip_count" value={{COUNT}}>
-                    <input type="hidden" name="end_date" value='{{x["end-time"][0]}}'>
-                    <input type="hidden" name="start_date" value='{{x["start-time"][0]}}'>
+                    <input type="hidden" name="trip_name" value={{NAME}}>
+                    <input type="hidden" name="end_date" value='{{x["end-time"][0]}}T{{x["start-time"][1]}}'>
+                    <input type="hidden" name="start_date" value='{{x["start-time"][0]}}T{{x["end-time"][1]}}'>
                     <input type="hidden" name="end_location" value='{{END_LOCATION}}'>
                     <input type="hidden" name="start_location" value='{{START_LOCATION}}'>
                     <input type="hidden" name="company" value='{{x["company"]}}'>

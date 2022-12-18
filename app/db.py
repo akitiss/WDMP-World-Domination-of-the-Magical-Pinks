@@ -7,7 +7,7 @@ c = db.cursor() # Create the three tables if they dont exist yet
 c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
     create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, hotel int, end_date text, start_date text, start_location text, end_location text, trip_count int);
-    create TABLE if NOT EXISTS trip_places(trip_id int, place_id int, PRIMARY KEY (trip_id, place_id));
+    create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
 """)
 c.close()
@@ -55,6 +55,7 @@ def add_saved_trip(user_ID, trip_name, hotel, end_date, start_date, start_locati
     c.execute("insert into savedtrips values(?, ?)", (user_ID, trip_ID))
     db.commit()
     c.close()
+    return trip_ID
 
 def add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company): # USE THE ABOVE METHOD TO ADD ALL
     c = db.cursor()

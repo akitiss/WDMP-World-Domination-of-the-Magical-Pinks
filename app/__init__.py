@@ -11,7 +11,6 @@ from opentripmap import *
 app = Flask(__name__)
 app.secret_key = "tmep"
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if ( request.method == "GET" ):
@@ -29,7 +28,8 @@ def login():
 @app.route("/", methods=["GET", "POST"])
 def home_page():
     if(session.get("ID", None) == None):
-        stat = "Please Login"
+        return redirect(url_for("login"))
+    elif (get_username(session.get("ID")) == None):
         return redirect(url_for("login"))
     else:
         print("ID IS : " + str(session['ID']))
@@ -106,8 +106,10 @@ def flights():
         end_location = request.form.get("selected_city_end")
         start_iata = request.form.get("selected_iata_start")
         end_iata = request.form.get("selected_iata_end")
+
         flights = get_flight_dict(start_iata, end_iata, start_date, end_date, trip_count)
         result = []
+
         for data in flights:
             instance = {}
             instance["start-time"] = data["start-time"].split("T") # splits yyyy-mm-ddThh:mm:ss in the middle
@@ -115,6 +117,7 @@ def flights():
             instance["price"] = data["price"]
             instance["company"] = data["company"]
             result.append(instance)
+
         # Each dictionary will have: start-time: "yyyy-mm-dd", end-time: "yyyy-mm-dd", price: "total_price", company: "company"
     return render_template("create_trip_flights.html", FLIGHTS=result, NAME=trip_name, END_LOCATION=end_location, START_LOCATION=start_location, COUNT=trip_count)
     
@@ -123,6 +126,7 @@ def flights():
 def post_flights():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
+
     start_location = request.form.get("start_location")
     end_location = request.form.get("end_location")
     count = request.form.get("trip_count")
@@ -131,42 +135,55 @@ def post_flights():
     start_date = request.form.get("start_date")
     price = request.form.get("price")
     company = request.form.get("company")
-    # print("START DATE: " + start_date)
-    # print("END DATE: " + end_date)
-    # print("price: " + price)
-    # print("company: " + company)
-    # print("count: " + count)
-    # print("start_location: " + start_location)
-    # print("end_location: " + end_location)
-    #                               --------------------- add to db ---------------------
-    add_saved_trip(session.get("ID"), name, -1, end_date, start_date, start_location, end_location, count, price, company)
-    return redirect(url_for("create_activities", Location=end_location))
+
+    trip_id = add_saved_trip(session.get("ID"), name, -1, end_date, start_date, start_location, end_location, count, price, company)
+    return redirect(url_for("create_activities", Location=end_location, ID=trip_id))
 
 @app.route("/create_activities", methods=["GET", "POST"])
 def create_activities():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    
     location = request.args.get("Location", None)
-    if ( location == None):
+    trip_id = request.args.get("ID", None)
+    if ( location == None ):
         return redirect(url_for("create_trip"))
-    return render_template("create_trip_activities.html", LOCATION=location)
-
-@app.route("/post_activities", methods=["GET", "POST"])
-def post_activities():
-    #if user DID NOT fill in all fields, return error message 
-    activity0 = request.form.get("Outdoor", "False")
-    activity1 = request.form.get("Super fun", "False")
-    print("activity0: " + activity0)
-    print("activity1: " + activity1)
-    #add to db
-    return redirect(url_for("create_activities_display"))
+    act_list = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+    return render_template("create_trip_activities.html", LOCATION=location, ID=trip_id, ACTIVITY_LIST=act_list)
 
 @app.route("/create_activities_display", methods=["GET", "POST"])
 def create_activities_display():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("create_trip_activities_display.html")
+    trip_id = request.form.get("trip_id")
+    if(trip_id == None): # If for some reason the trip_id is empty, send user back to the create trips page
+        return redirect(url_for("create_trip"))
+    
+    city = request.form.get("location", None)
+    activity_count = request.form.get("activity_count", 1)
+    act_list = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+    selected_activities = []
+
+    for x in act_list:
+        if(request.form.get(x, "False") == "True"):
+            selected_activities.append(x)
+            print("selected: " + x)
+    print("CITY: " + city)
+    print("ALL SELECTED: " + str(selected_activities))
+    print("CCOUNT: " + str(activity_count))
+    places_dict = get_places(city, 5000, selected_activities, int(activity_count)) 
+    print("PLACES_DICT: " + str(places_dict))
+    # change places_dict to more managable data
+    data = []
+    for place_dict in places_dict:
+        for place in place_dict:
+            info = {
+                "name": place, # ----------add more data we need here----------
+                "url": place_dict[place]["url"],
+            }
+            add_place(trip_id, place_dict[place]["xid"]) # adds place to DB
+            data.append(info)
+    print("DATA: "+ str(data))
+    return render_template("create_trip_activities_display.html", ACTIVITIES=data)
 
 @app.route("/hotels", methods=["GET", "POST"])
 def create_hotel():

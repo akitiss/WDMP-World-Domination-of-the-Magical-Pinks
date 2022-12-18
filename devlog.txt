@@ -199,3 +199,9 @@ aprilL -- 2022-12-18 17:18
 first and second page of create trip look SAUR FIRE
 ==============================================================
 
+joshuaL -- 2022-12-18 00:44
+--------------------------------------------------------------
+worked on the database and opentripmap.py file. 
+working on making the activites page display what the user input.
+now adds places info to database as the places are being choosen
+==============================================================

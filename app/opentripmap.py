@@ -58,13 +58,33 @@ def get_place(city, radius, kind, limit):
     # print(places_list)
     return master_place_details
 
-def get_places(city, radius, categories, limit ):
-    places_max = int(limit / len(categories))
-    details_master = {}
-    for category in categories:
-        details_master.update(get_place(city, 5000, category, places_max))
-    return details_master
+# GONNA CHANGE A BIT, so the loop keeps going until to reaches the limit, eg. if the user chooses 10 places and 7 categories, they get 10 places with some repeats instead of 7
+# def get_places(city, radius, categories, limit ):
+#     places_max = int(limit / len(categories)) 
+#     details_master = {}
+#     for category in categories:
+#         details_master.update(get_place(city, 5000, category, places_max))
+#     return details_master
 
+def get_places(city, radius, categories, limit ):
+    base_limit = int(limit / len(categories))
+    over = limit - (len(categories) * base_limit) # add extra places lost by the base_lim calculation
+    places = []
+    for category in categories:
+        LIM = base_limit
+        if(over > 0):
+            LIM+=1
+            over-=1
+        list = (get_place(city, radius, category, 15))
+        if(LIM > 0):
+            for place_name in list: # will skip if no entry
+                if(place_name != ""): # will skip if there is no name
+                    entry = {
+                        place_name: list[place_name]
+                    }
+                    places.append(entry)
+                    LIM-=1
+    return places
 
 def get_hotels(city, limit):
     return get_place(city, 5000, "other_hotels", limit)
@@ -75,8 +95,12 @@ def get_(city, limit):
 def get_naughty(city, limit):
     return get_place(city, 5000, "adult", limit)
 
-x = get_places('Athens', 5000, ['malls', 'other_hotels'], 10)
-print(x)
+# places_dict = get_places("LONDON", 5000, ['beaches', 'natural'], 10) 
+# print(places_dict)
+# y = get_place("LONDON", 5000, 'beaches', 15)
+# print(y)
+# x = get_places('Athens', 5000, ['natural', 'hot_springs', 'volcanoes', 'beaches'], 10)
+# print(x)
 
 Endpoints = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
 #x = get_naughty('Paris', 10)

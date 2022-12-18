@@ -48,7 +48,7 @@
       </h1>
 
       <h2> Activities </h2>
-      <form action = "/post_activities" method="POST">
+      <form action = "/create_activities_display" method="POST">
       <div class="form-group">
         <label for="form_user">How many activities do you want to do?</label>
         <input required type="number" class="form-control" name="activity_count" id="form_activity_count">
@@ -70,14 +70,15 @@
 
       <br>
       
-      {% for x in ACTIVITIES %}
+      {% for x in ACTIVITY_LIST %}
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck1" name="{{ACTIVITIES.get(x)}}" value="True">
-          <label class="custom-control-label" for="customCheck1">{{ACTIVITIES.get(x)}}</label>
+          <input type="checkbox" class="custom-control-input" id="customCheck1" name="{{x}}" value="True">
+          <label class="custom-control-label" for="customCheck1">{{x}}</label>
         </div>
   
       {% endfor %}
         <input type="hidden" name="location" value="{{LOCATION}}">
+        <input type="hidden" name="trip_id" value="{{ID}}">
         <button type = "submit" class = "btn" name="sub1" value="submit"> SUBMIT </button>
       </form>
     

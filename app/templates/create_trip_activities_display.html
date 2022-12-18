@@ -89,7 +89,14 @@
       
       
       {% for x in ACTIVITIES %}
-        <a class = "btn btn-primary" href="/home_page" value={{ACTIVITIES.get(x)}}> SELECT </a>
+        <div style = "display: inline-flex;"> 
+          <div class ="card" style ="width: 20rem; float: left; margin: 10px">
+              <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{x["name"]}}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. {{x["url"]}}</p>
+              </div>
+        </div>
       {% endfor %}
 
       <br>

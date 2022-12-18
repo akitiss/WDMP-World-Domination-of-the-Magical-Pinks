@@ -44,6 +44,13 @@ body{
     background-position: center;
 }
 
+.login{
+    background-color: #010C06;
+}
+
+.register{
+    background-color: white;
+}
 
 
 /* red: #FE5F55

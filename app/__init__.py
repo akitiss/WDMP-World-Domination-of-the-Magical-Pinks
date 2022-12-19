@@ -6,6 +6,7 @@ from flask import Flask, session, render_template, request, redirect, url_for
 from db import *
 from amadeus import *
 from opentripmap import *
+from weather import *
 #from test import *
 
 app = Flask(__name__)
@@ -240,7 +241,8 @@ def trip():
     trip_end_date = make_date(trip_info[4])
     flight_start_date = make_date(flight_info[3])
     flight_end_date = make_date(flight_info[4])
-    return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date)
+    weather_data = get_weather(trip_info[7])
+    return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date,WEATHER=weather_data)
 
 
 if __name__ == "__main__":

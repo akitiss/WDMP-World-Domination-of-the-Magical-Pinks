@@ -18,6 +18,7 @@ def get_weather(city_name, *country_name): #returns temp of city/country
     index = 0
     while(index < len(city_dict['data'])):
         flight_data = {
+            "date": city_dict['data'][index]['datetime'],
             "temp": city_dict['data'][index]['temp'],
             "max_temp": city_dict['data'][index]['max_temp'],
             "min_temp": city_dict['data'][index]['min_temp'],
@@ -25,8 +26,7 @@ def get_weather(city_name, *country_name): #returns temp of city/country
             "wind_spd": city_dict['data'][index]['wind_spd'],
             "precip": city_dict['data'][index]['precip'],
         }
-        date = city_dict['data'][index]['datetime']
-        result.append({date: flight_data})
+        result.append(flight_data)
         index += 1
     return result
 

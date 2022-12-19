@@ -106,7 +106,25 @@
         </div> 
 
         <h2 class> Check out the weather! </h2>
-
+        <div class = "row">
+        {% for x in WEATHER %}
+        <div class = "col"> 
+          <div class = "card my-2 mx-1" style ="width: 20rem">
+            <div class="card-header">
+              {{x['date']}}
+            </div>
+            <div class="card-body"> Temperature: {{x['temp']}}C <br>
+              Max Temperature: {{x['max_temp']}} <br> 
+              Min Temperature: {{x['min_temp']}} <br>
+              Wind Speed: {{x['wind_spd']}} <br>
+              Description: {{x['description']}} <br>
+              Percepitation: {{x['precip']}}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
 
       </div>
     </body>

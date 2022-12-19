@@ -196,7 +196,8 @@ login page and register page LOOK SAUR FIRE
 
 aprilL -- 2022-12-18 17:18
 --------------------------------------------------------------
-first and second page of create trip look SAUR FIRE
+first and second page of create trip lo
+ok SAUR FIRE
 ==============================================================
 
 joshuaL -- 2022-12-18 00:44
@@ -212,4 +213,9 @@ worked on db
 made dates look neat 
 saved trips and info of specific trip displays things!
 made weather api return things we want
+==============================================================
+
+aprilL -- 2022-12-19 15:04
+--------------------------------------------------------------
+added weather on trip page
 ==============================================================

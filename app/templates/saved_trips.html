@@ -47,21 +47,30 @@
         <h1 class="text-center">
           Saved Trips
         </h1>
-        
+        {% for x in TRIPS_LIST %}
         <div class="card mb-2 mt-3 mx-1" style="width: 50;">
           <div class="card-header"> </div>
           <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
-            <h5 class="card-title"> Trip Name </h5>
+            <h5 class="card-title"> {{x['name']}} </h5>
             <p class="card-text"> 
-              Trip origin to trip destination <br>
-              start date to end date <br>
-            
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <b>{{x['start_location']}} </b> (Origin) <br>
+                  {{x['start_date'][0]}} <br>
+                  {{x['start_date'][1]}} <br>
+                </li>
+                <li class="list-group-item">
+                  <b>{{x['end_location']}} </b> (Destination) <br>
+                  {{x['end_date'][0]}} <br>
+                  {{x['end_date'][1]}} <br>
+                </li>
+              </ul>
             <form action = "/trip" method="POST">
-              <button type = "submit" class = "btn" name="sub1" value="trip_id"> SELECT </button>
+              <button type = "submit" class = "btn" name="trip_id" value="{{x['trip_id']}}"> SELECT </button>
             </form>  
           </div>
         </div>
-      
+        {% endfor %}
       </div>
     </body>
 </html>

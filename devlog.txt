@@ -205,3 +205,11 @@ worked on the database and opentripmap.py file.
 working on making the activites page display what the user input.
 now adds places info to database as the places are being choosen
 ==============================================================
+
+joshuaL & aprilL -- 2022-12-18 23:55
+--------------------------------------------------------------
+worked on db
+made dates look neat 
+saved trips and info of specific trip displays things!
+made weather api return things we want
+==============================================================

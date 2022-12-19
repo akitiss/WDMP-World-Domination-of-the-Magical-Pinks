@@ -41,11 +41,11 @@
         <div class="flex-grow-1">
           <!--spacer-->
         </div>
-      </nav>          
-  
+      </nav>    
+          
       <div class = "container align-items center py-3 w-50">
-        <h1 class="text-center">
-          Create Trip
+        <h1 class="text-center">  
+                Create Trip
             </h1>
 
             <h2> Hotels </h2>
@@ -79,7 +79,21 @@
             
             
             {% for x in FLIGHTS %}
-              <a class = "btn btn-primary" href="/flights" value={{FLIGHTS.get(x)}}> SELECT </a>
+            <div class="card">
+              <div class="card-header">
+                Hotel rating
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Hotel Name</h5>
+                <p class="card-text">Hotel information.</p>
+                <form action = "/post_hotels" method="POST">
+                  <input type="hidden" name="trip_id" value={{TRIP_ID}}>
+                  
+                  <button type = "submit" class = "btn" name="hotel" value="hotel_id"> SELECT </button>
+                </form>  
+              </div>
+            </div>
+            
             {% endfor %}
 
             

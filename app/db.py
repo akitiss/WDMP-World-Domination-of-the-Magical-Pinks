@@ -9,6 +9,7 @@ c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, userna
     create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, hotel int, end_date text, start_date text, start_location text, end_location text, trip_count int);
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
+    create TABLE if NOT EXISTS places(place_id int, name text, url text)
 """)
 c.close()
 
@@ -126,7 +127,7 @@ def get_flight_info(ID): # ID is a flight_id.
     #print(data)
     return data[0] # tuple of items: (flight_id, start_location, end_location, start_time, end_time, price, company, count)
 
-def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None if none
+def get_all_places_id(ID): # ID is a trip_id. returns a list of all place_ids, or None if none
     c = db.cursor()
     c.execute("select place_id from trip_places where (trip_id = ?)", (ID,))
     data = c.fetchall()
@@ -135,6 +136,34 @@ def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None 
     places = [id[0] for id in data]
     c.close()
     return places
+
+def get_place_info(ID): # ID is a place_id
+    c = db.cursor()
+    c.execute("select * from places where (place_id = ?)", (ID,))
+    data = c.fetchall()
+    if data == None : 
+        return None
+    c.close()
+    return data
+
+def make_date(date):
+    final = []
+    splitted = date.split("T")
+    time_splitted = splitted[1].split(":")
+    zone = " AM"
+    string = ""
+    if (int(time_splitted[0]) == 0):
+        string += ("12:" + time_splitted[1] + zone)
+    elif (int(time_splitted[0]) == 12):
+        string += ("12:" + time_splitted[1] + " PM")
+    elif (int(time_splitted[0]) > 12):
+        string += (str(int(time_splitted[0])-12) + ":" + time_splitted[1] + " PM")
+    else:
+        string += ("" + time_splitted[0][1:] + ":" + time_splitted[1] + zone)
+    final.append(string)
+    final.append(splitted[0])
+    return final
+
 #print(add_flight_info(1000))
 #print(get_places(-1))
 #print(get_flight_info(1))

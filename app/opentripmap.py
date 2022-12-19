@@ -75,7 +75,7 @@ def get_places(city, radius, categories, limit ):
         if(over > 0):
             LIM+=1
             over-=1
-        list = (get_place(city, radius, category, 15))
+        list = (get_place(city, radius, category, 25))
         for place_name in list: # will skip if no entry
             if(LIM > 0):
                 if(place_name != ""): # will skip if there is no name

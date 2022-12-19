@@ -45,39 +45,39 @@
 
       <div class = "container align-items center py-3 w-50">
         <h1 class="text-center">
-          Trip Name 
+          {{TRIP_DATA[2]}} 
         </h1>
 
         <p class = "text-center">
-          People count
+          {{TRIP_DATA[8]}} People
         </p>
 
         <h2 class> Location </h2>
-          <p> Origin: <br>
-              Destination: 
+          <p> Origin: {{TRIP_DATA[6]}}<br>
+              Destination: {{TRIP_DATA[7]}}
           </p>
 
         <h2> Dates </h2>
-          <p> Start Date: <br>
-              End Date: 
+          <p> Start Date: {{TRIP_START[1]}} <br>
+              End Date: {{TRIP_END[1]}}
           </p>
 
         <h2> Flight </h2>
-        <div class="card my-2 mx-1" style="width: 30rem;">
+        <div class="card my-2 mx-1" style="width: 35rem;">
           <div class="card-header">
-            company
+            {{FLIGHT_DATA[6]}}
           </div>
           <div class="card-body"> 
             <h5 class="card-title">Roundtrip</h5>
           <p class="card-text"> 
-            Departure Flight: start time on start date<br>
-            Return Flight: end time on end date <br>
-            Total Price: price</p>
+            Departure Flight: {{FLIGHT_START[0]}} on {{FLIGHT_START[1]}}<br>
+            Return Flight: {{FLIGHT_END[0]}} on {{FLIGHT_END[1]}} <br>
+            Total Price: ${{FLIGHT_DATA[5]}}</p>
           </div>
         </div>
 
         <h2 class = "pt-2"> Hotel </h2>
-        <div class="card my-2 mx-1" style="width: 30rem;">
+        <div class="card my-2 mx-1" style="width: 35rem;">
           <div class="card-header">
             Hotel Rating
           </div>
@@ -93,7 +93,7 @@
         <div class ="card my-2 mx-1" style ="width: 25rem">
           <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top">
           <div class="card-body">
-            <h5 class="card-title">Activity Name</h5>
+            <h5 class="card-title">{{PLACES_DATA[]}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>          
         </div> 
@@ -105,6 +105,7 @@
           </div>          
         </div> 
 
+        <h2 class> Check out the weather! </h2>
 
 
       </div>

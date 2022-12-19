@@ -114,6 +114,8 @@ def flights():
             instance = {}
             instance["start-time"] = data["start-time"].split("T") # splits yyyy-mm-ddThh:mm:ss in the middle
             instance["end-time"] = data["end-time"].split("T")
+            instance["nice-start-time"] = make_date(data["start-time"])
+            instance["nice-end-time"] = make_date(data["end-time"])
             instance["price"] = data["price"]
             instance["company"] = data["company"]
             result.append(instance)
@@ -204,13 +206,41 @@ def post_hotels():
 def saved_trips():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("saved_trips.html")
+    trips_id = get_savedtrips(session.get('ID'))
+    all_data = []
+    for trip_id in trips_id:
+        trip_info = get_trip_info(trip_id)
+        trip_data = {
+            "name": trip_info[2],
+            "start_date": make_date(trip_info[4]),
+            "end_date": make_date(trip_info[5]),
+            "start_location": trip_info[6],
+            "end_location": trip_info[7],
+            "trip_id": trip_info[0]
+        }
+        all_data.append(trip_data)
+    all_data = all_data[::-1]
+    return render_template("saved_trips.html", TRIPS_LIST=all_data)
 
 @app.route("/trip", methods=["GET", "POST"])
 def trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("trip.html")
+    trip_id = request.form.get("trip_id")
+    print(trip_id)
+    trip_info = get_trip_info(trip_id)
+    flight_info = get_flight_info(trip_info[1])
+    places_id = get_all_places_id(int(trip_id))
+    places_info = []
+    for id in places_id:
+        info = get_place_info(id)
+        places_info.append(info)
+    #making dates pretty
+    trip_start_date = make_date(trip_info[5])
+    trip_end_date = make_date(trip_info[4])
+    flight_start_date = make_date(flight_info[3])
+    flight_end_date = make_date(flight_info[4])
+    return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date)
 
 
 if __name__ == "__main__":

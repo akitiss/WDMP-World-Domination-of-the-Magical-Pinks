@@ -61,8 +61,8 @@
                 <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
                   <h5 class="card-title">Roundtrip</h5>
                   <p class="card-text"> 
-                    Departure Flight: {{x["start-time"][1]}} on {{x["start-time"][0]}}<br>
-                    Return Flight: {{x["end-time"][1]}} on {{x["end-time"][0]}} <br>
+                    Departure Flight: {{x["nice-start-time"][0]}} on {{x["nice-start-time"][1]}}<br>
+                    Return Flight: {{x["nice-end-time"][0]}} on {{x["nice-end-time"][1]}} <br>
                     Total Price: ${{x["price"]}}</p>
                   
                   <form action = "/post_flights" method="POST">

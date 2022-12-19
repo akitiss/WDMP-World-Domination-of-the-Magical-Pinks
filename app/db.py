@@ -104,10 +104,9 @@ def get_savedtrips(ID): # ID is a u_id. Fetches a list of all trip_ids that a us
     if data == None : 
         return []
     trips = [id[0] for id in data]
-    
     return trips
 
-def get_trip_info(ID): # ID is a trip_id. ------WIP------
+def get_trip_info(ID): # ID is a trip_id
     c = db.cursor()
     c.execute("select * from tripinfo where (trip_id = ?)", (ID,))
     data = c.fetchall()
@@ -115,8 +114,17 @@ def get_trip_info(ID): # ID is a trip_id. ------WIP------
     if(data == []):
         return None
     #print(data)
-    
-    return data[0]
+    return data[0] # tuple of items: (trip_id, flight_id, trip_name, hotel, end_date, start_date, start_location, end_location, trip_count)
+
+def get_flight_info(ID): # ID is a flight_id.
+    c = db.cursor()
+    c.execute("select * from flight where (flight_id = ?)", (ID,))
+    data = c.fetchall()
+    c.close()
+    if(data == []):
+        return None
+    #print(data)
+    return data[0] # tuple of items: (flight_id, start_location, end_location, start_time, end_time, price, company, count)
 
 def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None if none
     c = db.cursor()
@@ -129,6 +137,6 @@ def get_places(ID): # ID is a trip_id. returns a list of all place_ids, or None 
     return places
 #print(add_flight_info(1000))
 #print(get_places(-1))
-#print(get_trip_info(-1))
-#print(get_savedtrips(-45))
+#print(get_flight_info(1))
+#print(get_savedtrips(0))
 #print(add_place(-1, -2))

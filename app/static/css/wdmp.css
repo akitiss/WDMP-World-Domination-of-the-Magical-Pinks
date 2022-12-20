@@ -3,14 +3,21 @@
 }
 
 .navbar_text {
-    color: black;
+    color: white;
 }
 
+.nav-link:hover {
+    color: #4E148C; 
+}
+
+.navbar-brand:hover {
+    color: #4E148C;
+}
 
 body{
-    background-color: white;
+    background-color: #010C06;
+    color: white;
 }
-
 
 .btn{
     background-color: #ffd166;
@@ -54,15 +61,24 @@ body{
 
 .login{
     background-color: #010C06;
-    
+
 }
 
 .register{
     background-color: white;
 }
 
-#footer {
+.footer {
    background-color: #2EC0F9; 
+}
+
+.carousel-item img {
+    height: 450px;
+}
+
+.carousel-caption {
+    height: 15%;
+    justify-items: center;
 }
 /* red: #FE5F55
 yellow: #FFD166

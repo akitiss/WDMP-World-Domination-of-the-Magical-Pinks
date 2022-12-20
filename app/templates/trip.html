@@ -63,7 +63,7 @@
           </p>
 
         <h2> Flight </h2>
-        <div class="card my-2 mx-1" style="width: 44rem;">
+        <div class="card my-2 mx-1" style="width: 43rem;">
           <div class="card-header">
             {{FLIGHT_DATA[6]}}
           </div>
@@ -77,7 +77,7 @@
         </div>
 
         <h2 class = "pt-2"> Hotel </h2>
-        <div class="card my-2 mx-1" style="width: 44rem;">
+        <div class="card my-2 mx-1" style="width: 43rem;">
           <div class="card-header">
           </div>
           <div class="card-body"> 
@@ -89,10 +89,10 @@
 
         <h2 class = "pt-2"> Activities</h2>
         <!-- loop for all activities-->
-        <div class="row"> 
+        <div class="row g-0 w-30"> 
           {% for x in PLACES_DATA %}
-          <div class ="col">
-            <div class ="card my-2 mx-1" style ="width: 20rem">
+          <div class ="col ">
+            <div class ="card my-2" style ="width: 20rem">
               <div class="card-header">
                 {{x['category']}}
               </div>
@@ -105,11 +105,11 @@
           {% endfor %}
         </div>
 
-        <h2 class> Check out the weather! </h2>
-        <div class = "row">
+        <h2 class> {{WEATHER_STATUS}} </h2>
+        <div class = "row g-0">
         {% for x in WEATHER %}
         <div class = "col"> 
-          <div class = "card my-2 mx-1" style ="width: 20rem">
+          <div class = "card my-2" style ="width: 20rem">
             <div class="card-header">
               {{x['date']}}
             </div>

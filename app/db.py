@@ -4,12 +4,15 @@ DB_FILE = "test.db"
 
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor() # Create the three tables if they dont exist yet
-c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
+c.executescript(""" 
+    create TABLE if NOT EXISTS user(u_id int primary key, username varchar(20), password varchar(30));
     create TABLE if NOT EXISTS savedtrips(u_id int, trip_id int, PRIMARY KEY (u_id, trip_id));
-    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, hotel int, end_date text, start_date text, start_location text, end_location text, trip_count int);
+    create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, end_date text, start_date text, start_location text, end_location text, trip_count int);
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
     create TABLE if NOT EXISTS places(place_id int, name text, url text, lat text, lon text);
+    create TABLE if NOT EXISTS trip_places(trip_id int, hotel_id text, PRIMARY KEY (trip_id, place_id));
+    create TABLE if NOT EXISTS hotels(hotel_id int, name text, url text, lat text, lon text);
 """)
 c.close()
 
@@ -49,16 +52,16 @@ def account_match(username, password): # if it matches, return u_id, else return
     else:
         return None
 
-def add_saved_trip(user_ID, trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company): # This adds to both: USE THIS
+def add_saved_trip(user_ID, trip_name, end_date, start_date, start_location, end_location, trip_count, price, company): # This adds to both: USE THIS
     # add trip info to tripinfo table.
-    trip_ID = add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company)
+    trip_ID = add_trip_info(trip_name,end_date, start_date, start_location, end_location, trip_count, price, company)
     c = db.cursor()
     c.execute("insert into savedtrips values(?, ?)", (user_ID, trip_ID))
     db.commit()
     c.close()
     return trip_ID
 
-def add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_location, trip_count, price, company): # USE THE ABOVE METHOD TO ADD ALL
+def add_trip_info(trip_name, end_date, start_date, start_location, end_location, trip_count, price, company): # USE THE ABOVE METHOD TO ADD ALL
     c = db.cursor()
     c.execute("SELECT MAX(trip_id) FROM tripinfo")
     max_id = c.fetchone()
@@ -67,7 +70,7 @@ def add_trip_info(trip_name, hotel, end_date, start_date, start_location, end_lo
     else:
         new_id = 0
     flight_id = add_flight_info(start_location, end_location, start_date, end_date, price, company, trip_count)
-    c.execute("insert into tripinfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)", (new_id, flight_id, str(trip_name), hotel, str(end_date), str(start_date), str(start_location), str(end_location), str(trip_count)))
+    c.execute("insert into tripinfo values(?, ?, ?, ?, ?, ?, ?, ?)", (new_id, flight_id, str(trip_name), str(end_date), str(start_date), str(start_location), str(end_location), str(trip_count)))
     db.commit()
     c.close()
     return new_id

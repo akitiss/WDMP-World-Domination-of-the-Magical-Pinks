@@ -78,14 +78,14 @@
 
             
             
-            {% for x in FLIGHTS %}
+            {% for x in HOTELS %}
             <div class="card">
               <div class="card-header">
                 Hotel rating
               </div>
               <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
+                <h5 class="card-title">{{x["name"]}}</h5>
+                <p class="card-text">{{x["url"]}}</p>
                 <form action = "/post_hotels" method="POST">
                   <input type="hidden" name="trip_id" value={{TRIP_ID}}>
                   

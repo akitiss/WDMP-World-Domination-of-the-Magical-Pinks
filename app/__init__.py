@@ -139,7 +139,7 @@ def post_flights():
     price = request.form.get("price")
     company = request.form.get("company")
 
-    trip_id = add_saved_trip(session.get("ID"), name, -1, end_date, start_date, start_location, end_location, count, price, company)
+    trip_id = add_saved_trip(session.get("ID"), name, end_date, start_date, start_location, end_location, count, price, company)
     return redirect(url_for("create_activities", Location=end_location, ID=trip_id))
 
 @app.route("/create_activities", methods=["GET", "POST"])
@@ -185,13 +185,26 @@ def create_activities_display():
             add_place(trip_id, info["xid"], info["name"], info["url"], info["lat"], info["lon"]) # adds place to DB
             data.append(info)
     #print("DATA: "+ str(data))
-    return render_template("create_trip_activities_display.html", ACTIVITIES=data)
+    return render_template("create_trip_activities_display.html", ACTIVITIES=data, TRIP_ID=trip_id, LOCATION=city)
 
 @app.route("/hotels", methods=["GET", "POST"])
 def create_hotel():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
-    return render_template("create_trip_hotels.html")
+    trip_id = request.form.get("trip_id")
+    if(trip_id == None): # If for some reason the trip_id is empty, send user back to the create trips page
+        return redirect(url_for("create_trip"))
+
+    city = request.form.get("location", None)
+    hotel_dict = get_hotels(city, 9)
+    hotel_data = []
+    for hotel in hotel_dict:
+        entry = {
+            "name": hotel,
+            "url": hotel_dict[hotel]["url"]
+        }
+        hotel_data.append(entry)
+    return render_template("create_trip_hotels.html", HOTELS=hotel_data, TRIP_ID=trip_id)
 
 @app.route("/post_hotels", methods=["GET", "POST"])
 def post_hotels():

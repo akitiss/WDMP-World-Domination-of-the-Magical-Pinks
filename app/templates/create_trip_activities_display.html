@@ -62,8 +62,11 @@
         </div>
       {% endfor %}
       </div>
-      
-      <a class = "btn" href="/hotels" value="hotels"> CONTINUE </a>
+      <form action = "/hotels" method="POST">
+        <input type="hidden" name="trip_id" value={{TRIP_ID}}>
+        <input type="hidden" name="location" value={{LOCATION}}>
+        <button type = "submit" class = "btn"> CONTINUE </button>
+      </form>  
 
             
             

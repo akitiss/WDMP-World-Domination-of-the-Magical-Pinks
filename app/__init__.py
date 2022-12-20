@@ -34,8 +34,9 @@ def home_page():
         return redirect(url_for("login"))
     else:
         print("ID IS : " + str(session['ID']))
-        stat = F"Logged in as {get_username(session['ID'])}"
-    return render_template("home_page.html", status=stat)
+        # stat = F"Logged in as {get_username(session['ID'])}"
+        session_user = F"{get_username(session['ID'])}"
+    return render_template("home_page.html", user=session_user) #status=stat
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
@@ -58,6 +59,14 @@ def register_page():
     else:
         return render_template("register.html", status="Passwords do not match.")
 
+@app.route("/account", methods = ["GET", "POST"])
+def account():
+    if(session.get("ID", None) == None):
+        return redirect(url_for("login"))
+    account_user = F"{get_username(session['ID'])}"
+    account_password = F"{get_password(session['ID'])}"
+    return render_template("account.html", user=account_user, passw=account_password)
+
 @app.route("/create_trip_location", methods=["GET", "POST"])
 def create_trip():
     if(session.get("ID", None) == None):
@@ -74,7 +83,8 @@ def create_trip():
         start_cities_dict = get_cities_dict(request.args.get("start"))
     if(request.args.get("end") != None):
         end_cities_dict = get_cities_dict(request.args.get("end"))
-    return render_template("create_trip_location.html", START_CITIES=start_cities_dict, END_CITIES=end_cities_dict, start_value=start_city_input, end_value=end_city_input, IATA_S=start_city_iata, IATA_E=end_city_iata)
+    account_user = F"{get_username(session['ID'])}"
+    return render_template("create_trip_location.html", START_CITIES=start_cities_dict, END_CITIES=end_cities_dict, start_value=start_city_input, end_value=end_city_input, IATA_S=start_city_iata, IATA_E=end_city_iata, user=account_user)
 
 @app.route("/search_location_from", methods=["POST"])
 def search_location_from():
@@ -242,7 +252,8 @@ def saved_trips():
         }
         all_data.append(trip_data)
     all_data = all_data[::-1]
-    return render_template("saved_trips.html", TRIPS_LIST=all_data)
+    account_user = F"{get_username(session['ID'])}"
+    return render_template("saved_trips.html", TRIPS_LIST=all_data, user=account_user)
 
 @app.route("/trip", methods=["GET", "POST"])
 def trip():

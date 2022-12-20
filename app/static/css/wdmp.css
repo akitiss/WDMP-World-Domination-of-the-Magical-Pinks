@@ -15,8 +15,8 @@
 }
 
 body{
-    background-color: #010C06;
-    color: white;
+    background-color: #101020;
+    color: rgb(182, 181, 181);
 }
 
 .btn{
@@ -61,15 +61,18 @@ body{
 
 .login{
     background-color: #010C06;
+    color: black;
 
 }
 
 .register{
     background-color: white;
+    color: black;
 }
 
 .footer {
    background-color: #2EC0F9; 
+   color: white;
 }
 
 .carousel-item img {

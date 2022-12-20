@@ -25,6 +25,16 @@ def get_username(id):
     else:
         return result[0]
 
+def get_password(id):
+    c = db.cursor()
+    c.execute("select password FROM user WHERE u_id = ?", (id, ))
+    result = c.fetchone()
+    c.close()
+    if(result == None):
+        return None
+    else: 
+        return result[0]
+
 def register_new_user(username, password): # if username and password combination already exists, return False, else return ID
     c = db.cursor()
     c.execute("select exists(select 1 from user where username=? and password=?)", (username, password,)) # returns 1 if if already exists

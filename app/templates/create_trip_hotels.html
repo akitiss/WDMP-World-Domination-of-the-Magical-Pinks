@@ -49,51 +49,25 @@
             </h1>
 
             <h2> Hotels </h2>
-
+            
+            {% for x in HOTELS %}
             <div class="card">
               <div class="card-header">
-                Hotel rating
               </div>
               <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
+                <h5 class="card-title">{{x["name"]}}</h5>
+                <p class="card-text">{{x["url"]}}</p>
                 <form action = "/post_hotels" method="POST">
-                  <button type = "submit" class = "btn" name="hotel" value="hotels"> SELECT </button>
+                  <input type="hidden" name="trip_id" value={{TRIP_ID}}>
+                  <input type="hidden" name="lon" value="{{x['lon']}}">
+                  <input type="hidden" name="name" value="{{x['name']}}">
+                  <input type="hidden" name="lat" value="{{x['lat']}}">
+                  <input type="hidden" name="xid" value="{{x['xid']}}">
+                  <button type = "submit" class = "btn" name="hotel"> SELECT </button>
                 </form>  
               </div>
             </div>
             <br>
-            <div class="card">
-              <div class="card-header">
-                Hotel rating
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
-                <form action = "/post_hotels" method="POST">
-                  <button type = "submit" class = "btn" name="hotel" value="hotels"> SELECT </button>
-                </form>  
-              </div>
-            </div>
-
-            
-            
-            {% for x in FLIGHTS %}
-            <div class="card">
-              <div class="card-header">
-                Hotel rating
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
-                <form action = "/post_hotels" method="POST">
-                  <input type="hidden" name="trip_id" value={{TRIP_ID}}>
-                  
-                  <button type = "submit" class = "btn" name="hotel" value="hotel_id"> SELECT </button>
-                </form>  
-              </div>
-            </div>
-            
             {% endfor %}
 
             

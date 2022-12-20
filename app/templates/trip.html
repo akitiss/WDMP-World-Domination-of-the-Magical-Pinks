@@ -49,12 +49,12 @@
         </h1>
 
         <p class = "text-center">
-          {{TRIP_DATA[8]}} People
+          {{TRIP_DATA[7]}} People
         </p>
 
         <h2 class> Location </h2>
-          <p> Origin: {{TRIP_DATA[6]}}<br>
-              Destination: {{TRIP_DATA[7]}}
+          <p> Origin: {{TRIP_DATA[5]}}<br>
+              Destination: {{TRIP_DATA[6]}}
           </p>
 
         <h2> Dates </h2>
@@ -63,7 +63,7 @@
           </p>
 
         <h2> Flight </h2>
-        <div class="card my-2 mx-1" style="width: 35rem;">
+        <div class="card my-2 mx-1" style="width: 44rem;">
           <div class="card-header">
             {{FLIGHT_DATA[6]}}
           </div>
@@ -77,9 +77,8 @@
         </div>
 
         <h2 class = "pt-2"> Hotel </h2>
-        <div class="card my-2 mx-1" style="width: 35rem;">
+        <div class="card my-2 mx-1" style="width: 44rem;">
           <div class="card-header">
-            Hotel Rating
           </div>
           <div class="card-body"> 
             <h5 class="card-title">Hotel Name</h5>
@@ -90,20 +89,21 @@
 
         <h2 class = "pt-2"> Activities</h2>
         <!-- loop for all activities-->
-        <div class ="card my-2 mx-1" style ="width: 25rem">
-          <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">{{PLACES_DATA[]}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>          
-        </div> 
-        <div class ="card my-2 mx-1" style ="width: 25rem">
-          <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Activity Name</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>          
-        </div> 
+        <div class="row"> 
+          {% for x in PLACES_DATA %}
+          <div class ="col">
+            <div class ="card my-2 mx-1" style ="width: 20rem">
+              <div class="card-header">
+                {{x['category']}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{x['name']}}</h5>
+                <p class="card-text">{{x['url']}}</p>
+              </div>          
+            </div> 
+          </div>
+          {% endfor %}
+        </div>
 
         <h2 class> Check out the weather! </h2>
         <div class = "row">

@@ -7,6 +7,7 @@ from db import *
 from amadeus import *
 from opentripmap import *
 from weather import *
+from google_maps import *
 #from test import *
 
 app = Flask(__name__)
@@ -271,6 +272,8 @@ def trip():
             place = {
                 "name": info[0][1],
                 "url": info[0][2],
+                "image": get_img_link(info[0][3], info[0][4]), 
+                "category": info[0][5],  
             }
             places_info.append(place)
     #making dates pretty

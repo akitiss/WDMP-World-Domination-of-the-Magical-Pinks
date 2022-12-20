@@ -93,12 +93,10 @@
           {% for x in PLACES_DATA %}
           <div class ="col ">
             <div class ="card my-2" style ="width: 20rem">
-              <div class="card-header">
-                {{x['category']}}
-              </div>
+              <iframe src="{{x['image']}}" allowfullscreen> </iframe>
               <div class="card-body">
-                <h5 class="card-title">{{x['name']}}</h5>
-                <p class="card-text">{{x['url']}}</p>
+                <h5 class="card-title" href="{{x['url']}}">{{x['name']}}</h5>
+                <p class="card-text">{{x['category']}}</p>
               </div>          
             </div> 
           </div>

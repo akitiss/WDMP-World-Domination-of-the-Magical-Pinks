@@ -16,6 +16,8 @@ def get_weather(city_name, *country_name): #returns temp of city/country
     # print(city_dict)
     result = []
     index = 0
+    if (not ('data' in city_dict)):
+        return []
     while(index < len(city_dict['data'])):
         flight_data = {
             "date": city_dict['data'][index]['datetime'],

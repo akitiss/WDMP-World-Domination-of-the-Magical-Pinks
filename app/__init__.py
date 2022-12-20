@@ -134,6 +134,7 @@ def post_flights():
     end_location = request.form.get("end_location")
     count = request.form.get("trip_count")
     name = request.form.get("trip_name")
+    print("NAME:" + name)
     end_date = request.form.get("end_date")
     start_date = request.form.get("start_date")
     price = request.form.get("price")
@@ -202,16 +203,25 @@ def create_hotel():
     for hotel in hotel_dict:
         entry = {
             "name": hotel,
-            "url": hotel_dict[hotel]["url"]
-        }
+            "url": hotel_dict[hotel]["url"],
+            "xid": hotel_dict[hotel]["xid"],
+            "lat": hotel_dict[hotel]["lat"],
+            "lon": hotel_dict[hotel]["lon"],
+        } # trip_id, hotel_id, name, url, lat, lon
         hotel_data.append(entry)
     return render_template("create_trip_hotels.html", HOTELS=hotel_data, TRIP_ID=trip_id)
 
 @app.route("/post_hotels", methods=["GET", "POST"])
 def post_hotels():
     #if user DID NOT fill in all fields, return error message 
-    hotel = request.form.get("hotel")
+    trip_id = request.form.get("trip_id")
+    url = request.form.get("url")
+    xid = request.form.get("xid")
+    lon = request.form.get("lon")
+    lat = request.form.get("lat")
+    name = request.form.get("name")
     #add to db
+    add_hotel(trip_id, xid, name, url, lat, lon)
     return redirect(url_for("saved_trips"))
 
 @app.route("/saved_trips", methods=["GET", "POST"])

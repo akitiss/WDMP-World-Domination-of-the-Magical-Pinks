@@ -11,7 +11,7 @@ c.executescript("""
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
     create TABLE if NOT EXISTS places(place_id int, name text, url text, lat text, lon text, category text);
-    create TABLE if NOT EXISTS hotels(hotel_id int, name text, url text, lat text, lon text);
+    create TABLE if NOT EXISTS hotels(trip_id int, hotel_id int, name text, url text, lat text, lon text);
 """)
 c.close()
 
@@ -53,7 +53,7 @@ def account_match(username, password): # if it matches, return u_id, else return
 
 def add_saved_trip(user_ID, trip_name, end_date, start_date, start_location, end_location, trip_count, price, company): # This adds to both: USE THIS
     # add trip info to tripinfo table.
-    trip_ID = add_trip_info(trip_name,end_date, start_date, start_location, end_location, trip_count, price, company)
+    trip_ID = add_trip_info(str(trip_name),end_date, start_date, start_location, end_location, trip_count, price, company)
     c = db.cursor()
     c.execute("insert into savedtrips values(?, ?)", (user_ID, trip_ID))
     db.commit()

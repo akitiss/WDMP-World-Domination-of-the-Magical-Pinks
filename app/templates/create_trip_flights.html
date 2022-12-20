@@ -67,7 +67,7 @@
                   
                   <form action = "/post_flights" method="POST">
                     <input type="hidden" name="trip_count" value={{COUNT}}>
-                    <input type="hidden" name="trip_name" value={{NAME}}>
+                    <input type="hidden" name="trip_name" value="{{NAME}}">
                     <input type="hidden" name="end_date" value='{{x["end-time"][0]}}T{{x["start-time"][1]}}'>
                     <input type="hidden" name="start_date" value='{{x["start-time"][0]}}T{{x["end-time"][1]}}'>
                     <input type="hidden" name="end_location" value='{{END_LOCATION}}'>

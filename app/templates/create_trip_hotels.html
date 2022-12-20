@@ -59,8 +59,11 @@
                 <p class="card-text">{{x["url"]}}</p>
                 <form action = "/post_hotels" method="POST">
                   <input type="hidden" name="trip_id" value={{TRIP_ID}}>
-                  
-                  <button type = "submit" class = "btn" name="hotel" value="hotel_id"> SELECT </button>
+                  <input type="hidden" name="lon" value="{{x['lon']}}">
+                  <input type="hidden" name="name" value="{{x['name']}}">
+                  <input type="hidden" name="lat" value="{{x['lat']}}">
+                  <input type="hidden" name="xid" value="{{x['xid']}}">
+                  <button type = "submit" class = "btn" name="hotel"> SELECT </button>
                 </form>  
               </div>
             </div>

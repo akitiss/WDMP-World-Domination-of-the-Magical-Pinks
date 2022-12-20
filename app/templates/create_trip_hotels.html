@@ -49,39 +49,10 @@
             </h1>
 
             <h2> Hotels </h2>
-
-            <div class="card">
-              <div class="card-header">
-                Hotel rating
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
-                <form action = "/post_hotels" method="POST">
-                  <button type = "submit" class = "btn" name="hotel" value="hotels"> SELECT </button>
-                </form>  
-              </div>
-            </div>
-            <br>
-            <div class="card">
-              <div class="card-header">
-                Hotel rating
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Hotel Name</h5>
-                <p class="card-text">Hotel information.</p>
-                <form action = "/post_hotels" method="POST">
-                  <button type = "submit" class = "btn" name="hotel" value="hotels"> SELECT </button>
-                </form>  
-              </div>
-            </div>
-
-            
             
             {% for x in HOTELS %}
             <div class="card">
               <div class="card-header">
-                Hotel rating
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{x["name"]}}</h5>
@@ -93,7 +64,7 @@
                 </form>  
               </div>
             </div>
-            
+            <br>
             {% endfor %}
 
             

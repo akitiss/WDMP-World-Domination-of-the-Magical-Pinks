@@ -53,10 +53,13 @@
         {% for x in ACTIVITIES %}
         <div class="col mb-4"> 
           <div class ="card w-30">
-              <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top">
+              <!-- <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top"> -->
+              <div class="card-header">
+                {{x['category']}}
+              </div>
               <div class="card-body">
                 <h5 class="card-title">{{x["name"]}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. {{x["url"]}}</p>
+                <p class="card-text"> {{x["url"]}}</p>
               </div>
           </div>
         </div>

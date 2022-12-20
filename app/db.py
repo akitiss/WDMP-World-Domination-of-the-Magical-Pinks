@@ -11,8 +11,7 @@ c.executescript("""
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
     create TABLE if NOT EXISTS places(place_id int, name text, url text, lat text, lon text);
-    create TABLE if NOT EXISTS trip_places(trip_id int, hotel_id text, PRIMARY KEY (trip_id, place_id));
-    create TABLE if NOT EXISTS hotels(hotel_id int, name text, url text, lat text, lon text);
+    create TABLE if NOT EXISTS hotels(trip_id int, hotel_id text, name text, url text, lat text, lon text);
 """)
 c.close()
 
@@ -101,6 +100,12 @@ def add_place(trip_id, place_id, name, url, lat, lon):
     c.close()
     return True
 
+def add_hotel(trip_id, hotel_id, name, url, lat, lon):
+    c = db.cursor()
+    c.execute("insert into hotels values(?, ?, ?, ?, ?, ?)", (trip_id, hotel_id, name, url, lat, lon))
+    db.commit()
+    c.close()
+
 def get_savedtrips(ID): # ID is a u_id. Fetches a list of all trip_ids that a user has in their saved trips.
     c = db.cursor()
     c.execute("select trip_id from savedtrips where (u_id = ?)", (ID,))
@@ -146,6 +151,15 @@ def get_place_info(ID): # ID is a place_id
     c.execute("select * from places where (place_id = ?)", (ID,))
     data = c.fetchall()
     if data == None : 
+        return None
+    c.close()
+    return data
+
+def get_hotel(ID): # ID is a trip_id
+    c = db.cursor()
+    c.execute("select * from hotels where (trip_id = ?)", (ID,))
+    data = c.fetchall()
+    if data == None:
         return None
     c.close()
     return data

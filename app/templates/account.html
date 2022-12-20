@@ -46,6 +46,29 @@
             Your Account Info <br>
         </h1> 
         </div>
-
+        <div class="container-fluid w-50 bg-light text-black-50">
+            <div class="row align-items-center">
+                <div class="col text-info fw-bold">
+                    Username:
+                </div>
+                <div class="col">
+                    {{user}}
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col text-info fw-bold">
+                    Password:
+                    <p onclick="reveal()"> Click to see password</p>
+                </div>
+                <div id="pass-info" class="col invisible">
+                    {{passw}}
+                    
+                </div>
+            </div>
+        </div>
+        <footer class="footer text-center py-2 fixed-bottom">
+            <img src="../static/images/navbar_logo.jpg" width="50" height="50" class="rounded">
+            Trippin' by World Domination by the Magical Pinks
+        </footer>
     </body>
 </html>

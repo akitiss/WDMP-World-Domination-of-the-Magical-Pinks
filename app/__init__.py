@@ -169,23 +169,20 @@ def create_activities_display():
     for x in act_list:
         if(request.form.get(x, "False") == "True"):
             selected_activities.append(x)
-            #print("selected: " + x)
     if(len(selected_activities) == 0):
         return render_template("create_trip_activities_display.html") # ERROR user didnt select any activities
-    # print("CITY: " + city)
-    # print("ALL SELECTED: " + str(selected_activities))
-    # print("CCOUNT: " + str(activity_count))
     places_dict = get_places(city, 5000, selected_activities, int(activity_count)) 
-    #print("PLACES_DICT: " + str(places_dict))
-    # change places_dict to more managable data
     data = []
     for place_dict in places_dict:
         for place in place_dict:
             info = {
                 "name": place, # ----------add more data we need here----------
+                "xid": place_dict[place]["xid"],
                 "url": place_dict[place]["url"],
+                "lat": place_dict[place]["lat"],
+                "lon": place_dict[place]["lon"],
             }
-            add_place(trip_id, place_dict[place]["xid"]) # adds place to DB
+            add_place(trip_id, info["xid"], info["name"], info["url"], info["lat"], info["lon"]) # adds place to DB
             data.append(info)
     #print("DATA: "+ str(data))
     return render_template("create_trip_activities_display.html", ACTIVITIES=data)
@@ -235,13 +232,19 @@ def trip():
     places_info = []
     for id in places_id:
         info = get_place_info(id)
-        places_info.append(info)
+        if len(info) > 0:
+            place = {
+                "name": info[0][1],
+                "url": info[0][2],
+            }
+            places_info.append(place)
     #making dates pretty
     trip_start_date = make_date(trip_info[5])
     trip_end_date = make_date(trip_info[4])
     flight_start_date = make_date(flight_info[3])
     flight_end_date = make_date(flight_info[4])
     weather_data = get_weather(trip_info[7])
+    print(places_info)
     return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date,WEATHER=weather_data)
 
 

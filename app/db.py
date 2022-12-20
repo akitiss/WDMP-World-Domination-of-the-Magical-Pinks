@@ -9,7 +9,7 @@ c.executescript(""" create TABLE if NOT EXISTS user(u_id int primary key, userna
     create TABLE if NOt EXISTS tripinfo(trip_id int primary key, flight_id int, trip_name text, hotel int, end_date text, start_date text, start_location text, end_location text, trip_count int);
     create TABLE if NOT EXISTS trip_places(trip_id int, place_id text, PRIMARY KEY (trip_id, place_id));
     create TABLE if NOT EXISTS flight(flight_id int primary key, start_location text, end_location text, start_time text, end_time text, price text, company text, count text);
-    create TABLE if NOT EXISTS places(place_id int, name text, url text)
+    create TABLE if NOT EXISTS places(place_id int, name text, url text, lat text, lon text);
 """)
 c.close()
 
@@ -85,13 +85,14 @@ def add_flight_info(start_location, end_location, start_time, end_time, price, c
     c.close()
     return new_id
 
-def add_place(trip_id, place_id):
+def add_place(trip_id, place_id, name, url, lat, lon):
     c = db.cursor()
     c.execute("select trip_id from trip_places where (trip_id = ? AND place_id = ?)", (trip_id, place_id))
     check = c.fetchone() 
     if(check != None):
         c.close()
         return False
+    c.execute("insert into places values(?, ?, ?, ?, ?)", (place_id, name, url, str(lat), str(lon)))
     c.execute("insert into trip_places values(?, ?)", (trip_id, place_id))
     db.commit()
     c.close()

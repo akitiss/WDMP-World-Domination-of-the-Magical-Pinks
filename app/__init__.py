@@ -181,8 +181,9 @@ def create_activities_display():
                 "url": place_dict[place]["url"],
                 "lat": place_dict[place]["lat"],
                 "lon": place_dict[place]["lon"],
+                "category": place_dict[place]["category"]
             }
-            add_place(trip_id, info["xid"], info["name"], info["url"], info["lat"], info["lon"]) # adds place to DB
+            add_place(trip_id, info["xid"], info["name"], info["url"], info["lat"], info["lon"], info["category"]) # adds place to DB
             data.append(info)
     #print("DATA: "+ str(data))
     return render_template("create_trip_activities_display.html", ACTIVITIES=data, TRIP_ID=trip_id, LOCATION=city)
@@ -223,10 +224,10 @@ def saved_trips():
         trip_info = get_trip_info(trip_id)
         trip_data = {
             "name": trip_info[2],
-            "start_date": make_date(trip_info[4]),
-            "end_date": make_date(trip_info[5]),
-            "start_location": trip_info[6],
-            "end_location": trip_info[7],
+            "start_date": make_date(trip_info[3]),
+            "end_date": make_date(trip_info[4]),
+            "start_location": trip_info[5],
+            "end_location": trip_info[6],
             "trip_id": trip_info[0]
         }
         all_data.append(trip_data)
@@ -252,12 +253,12 @@ def trip():
             }
             places_info.append(place)
     #making dates pretty
-    trip_start_date = make_date(trip_info[5])
-    trip_end_date = make_date(trip_info[4])
+    trip_start_date = make_date(trip_info[4])
+    trip_end_date = make_date(trip_info[3])
     flight_start_date = make_date(flight_info[3])
     flight_end_date = make_date(flight_info[4])
-    weather_data = get_weather(trip_info[7])
-    print(places_info)
+    weather_data = get_weather(trip_info[6])
+    #trip_id int primary key, flight_id int, trip_name text, end_date text, start_date text, start_location text, end_location text, trip_count int
     return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date,WEATHER=weather_data)
 
 

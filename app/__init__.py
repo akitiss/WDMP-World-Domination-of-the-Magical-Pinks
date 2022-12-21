@@ -193,7 +193,8 @@ def create_activities_display():
                 "url": place_dict[place]["url"],
                 "lat": place_dict[place]["lat"],
                 "lon": place_dict[place]["lon"],
-                "category": place_dict[place]["category"]
+                "category": place_dict[place]["category"],
+                "image": (get_img_link(place_dict[place]["lat"], place_dict[place]["lon"]))
             }
             add_place(trip_id, info["xid"], info["name"], info["url"], info["lat"], info["lon"], info["category"]) # adds place to DB
             data.append(info)
@@ -261,7 +262,6 @@ def trip():
     if(session.get("ID", None) == None):
         return redirect(url_for("login"))
     trip_id = request.form.get("trip_id")
-    print(trip_id)
     trip_info = get_trip_info(trip_id)
     flight_info = get_flight_info(trip_info[1])
     places_id = get_all_places_id(int(trip_id))
@@ -282,12 +282,14 @@ def trip():
     flight_start_date = make_date(flight_info[3])
     flight_end_date = make_date(flight_info[4])
     weather_data = get_weather(trip_info[6])
+    hotel = get_hotel(trip_id)
+    print(hotel)
     if (weather_data == []):
         status_weather = "Sorry the weather API is not working right now!"
     else:
         status_weather = "Check out the weather!"
     #trip_id int primary key, flight_id int, trip_name text, end_date text, start_date text, start_location text, end_location text, trip_count int
-    return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date,WEATHER=weather_data,WEATHER_STATUS=status_weather)
+    return render_template("trip.html",TRIP_DATA=trip_info,FLIGHT_DATA=flight_info,PLACES_DATA=places_info,TRIP_START=trip_start_date,TRIP_END=trip_end_date,FLIGHT_START=flight_start_date,FLIGHT_END=flight_end_date,WEATHER=weather_data,WEATHER_STATUS=status_weather,HOTEL_DATA=hotel)
 
 
 if __name__ == "__main__":

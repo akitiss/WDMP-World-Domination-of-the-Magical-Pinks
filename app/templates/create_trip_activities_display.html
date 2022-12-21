@@ -50,9 +50,9 @@
 
       <h2> Activities </h2>     
       <div class="row row-cols-1 row-cols-md-3">
-        {% for x in ACTIVITIES %}
-        <div class="col mb-4"> 
-          <div class ="card w-30">
+        {% for x in PLACES_DATA %}
+        <div class ="col ">
+          <div class ="card my-2" style ="width: 20rem">
             <iframe src="{{x['image']}}" allowfullscreen> </iframe>
             <div class="card-body">
               <h5 class="card-title" href="{{x['url']}}">{{x['name']}}</h5>
@@ -60,8 +60,8 @@
             </div>          
           </div> 
         </div>
-      {% endfor %}
-      </div>
+        {% endfor %}
+    </div>
       <form action = "/hotels" method="POST">
         <input type="hidden" name="trip_id" value={{TRIP_ID}}>
         <input type="hidden" name="location" value={{LOCATION}}>

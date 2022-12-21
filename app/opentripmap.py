@@ -98,8 +98,8 @@ def get_naughty(city, limit):
 
 # places_dict = get_places("LONDON", 5000, ['museums'], 5) 
 # print(places_dict)
-# y = get_place("LONDON", 5000, 'foods', 15)
-# print(y)
+y = get_place("NEW YORK", 5000, 'adult', 10)
+print(y)
 # hotel = get_hotels("LONDON", 10)
 # print(hotel)
 # x = get_places('Athens', 5000, ['natural', 'hot_springs', 'volcanoes', 'beaches'], 10)

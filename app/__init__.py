@@ -211,7 +211,9 @@ def create_hotel():
         return redirect(url_for("create_trip"))
 
     city = request.form.get("location", None)
+    print("city: " + city)
     hotel_dict = get_hotels(city, 9)
+    print(hotel_dict)
     hotel_data = []
     for hotel in hotel_dict:
         entry = {

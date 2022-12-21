@@ -31,18 +31,26 @@
             <a class = "navbar_text nav-link" href="/saved_trips"> SAVED TRIPS </a>                
           </li>
         </ul>
-    
         <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-          <li class="nav-item">
-            <a class = "navbar_text nav-link" href="/logout"> LOGOUT </a>                
-          </li>
-        </ul>
+          <li class="nav-item dropdown">
+              <button type="button" class="navbar_text btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" style="background-color: #2EC0F9; color: white" data-bs-toggle="dropdown"  data-bs-display="static">
+                  {{user}}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="/account"> 
+                  <img src="../static/images/profile.jpg" style="border-radius:50%; width: 60px; height: 60px" class="mx-auto d-block p-0"> <br>
+                  <p class = "text-center pt-0"> {{user}} </p>
+                </a></li>
+                <li><a class="dropdown-item" href="/logout">LOGOUT</a></li>
+              </ul>
+            </li>
+      </ul>
       </div>
       <div class="flex-grow-1">
         <!--spacer-->
       </div>
-    </nav>    
-        
+    </nav>  
+
     <div class = "container align-items center py-3 w-50">
       <h1 class="text-center">
         Create Trip
@@ -51,77 +59,27 @@
       <h2> Activities </h2>     
       <div class="row row-cols-1 row-cols-md-3">
         {% for x in ACTIVITIES %}
-        <div class="col mb-4"> 
-          <div class ="card w-30">
-              <!-- <img src="https://ih1.redbubble.net/image.3159224814.4915/st,small,507x507-pad,600x600,f8f8f8.jpg" class="card-img-top"> -->
-              <div class="card-header">
-                {{x['category']}}
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">{{x["name"]}}</h5>
-                <p class="card-text"> {{x["url"]}}</p>
-              </div>
-          </div>
+        <div class ="col ">
+          <div class ="card my-2" style ="width: 20rem">
+            <iframe src="{{x['image']}}" allowfullscreen> </iframe>
+            <div class="card-body">
+              <h5 class="card-title" href="{{x['url']}}">{{x['name']}}</h5>
+              <p class="card-text">{{x['category']}}</p>
+            </div>          
+          </div> 
         </div>
-      {% endfor %}
-      </div>
+        {% endfor %}
+    </div>
       <form action = "/hotels" method="POST">
         <input type="hidden" name="trip_id" value={{TRIP_ID}}>
-        <input type="hidden" name="location" value={{LOCATION}}>
+        <input type="hidden" name="location" value="{{LOCATION}}">
         <button type = "submit" class = "btn"> CONTINUE </button>
       </form>  
-
-      <footer class="footer text-center py-2 fixed-bottom">
+    </div>
+      <!-- <footer class="footer text-center py-2 fixed-bottom">
         <img src="../static/images/navbar_logo.jpg" width="50" height="50" class="rounded">
         Trippin' by World Domination by the Magical Pinks
-      </footer>
-            
-      <!--   
-      <div class="accordion" id="accordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              Accordion Item #1
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-         </div>
-        </div>
-      </div> 
-
-      <div class="accordion" id="accordion">
-        {% for x in ACTIVITES %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                {{x}} <---- name of the flight
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-              <div class="accordion-body">
-                It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. 
-              </div>
-            </div>
-          </div?
-        {% endfor %}
-      -->
-
+      </footer>    -->
         </div>
     </body>
 </html>

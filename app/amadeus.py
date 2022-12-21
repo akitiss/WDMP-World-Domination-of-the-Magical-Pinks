@@ -90,7 +90,12 @@ def get_flight_dict(origin, destination, start_date, end_date, number_of_passeng
     get_data = get_flight_data(origin, destination, start_date, end_date, number_of_passengers)
     if( get_data == None ):
         return result
-    
+    if (not "data" in get_data):
+        print("OOPS No 'data' in the json of flight data call")
+        return []
+    if (not "dictionaries" in get_data):
+        print("OOPS No 'dictionaries' in the json of flight data call")
+        return []
     data = get_data["data"]
     codes = get_data["dictionaries"]
 

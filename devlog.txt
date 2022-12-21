@@ -243,3 +243,16 @@ yukiF -- 2022-12-20 11:45
 added navbar link to account page
 started account page
 ==============================================================
+
+aahanM -- 2022-12-20 13:45
+--------------------------------------------------------------
+google_map_api thing!
+==============================================================
+
+aprilL -- 2022-12-20 23:50
+--------------------------------------------------------------
+made dropdown in navbar for user
+touched up account page 
+all images are linked for activities 
+hotels are shown 
+==============================================================

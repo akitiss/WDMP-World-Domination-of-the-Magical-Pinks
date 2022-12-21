@@ -75,7 +75,7 @@ def get_places(city, radius, categories, limit ):
         if(over > 0):
             LIM+=1
             over-=1
-        list = (get_place(city, radius, category, 15))
+        list = (get_place(city, radius, category, 10))
         for place_name in list: # will skip if no entry
             if(LIM > 0):
                 if(place_name != ""): # will skip if there is no name
@@ -98,12 +98,12 @@ def get_naughty(city, limit):
 
 # places_dict = get_places("LONDON", 5000, ['museums'], 5) 
 # print(places_dict)
-# y = get_place("LONDON", 5000, 'beaches', 15)
+# y = get_place("NEW YORK", 5000, 'adult', 10)
 # print(y)
 # hotel = get_hotels("LONDON", 10)
 # print(hotel)
 # x = get_places('Athens', 5000, ['natural', 'hot_springs', 'volcanoes', 'beaches'], 10)
 # print(x)
 
-Endpoints = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+Endpoints = ['hot_springs', 'volcanoes', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
 #x = get_naughty('Paris', 10)

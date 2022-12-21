@@ -14,6 +14,10 @@
     color: #4E148C;
 }
 
+.nav_button{
+    background-color: #2EC0F9;
+}
+
 body{
     background-color: #101020;
     color: whitesmoke;
@@ -84,6 +88,9 @@ body{
     height: 15%;
     justify-items: center;
 }
+
+
+
 /* red: #FE5F55
 yellow: #FFD166
 green: #06D6A0

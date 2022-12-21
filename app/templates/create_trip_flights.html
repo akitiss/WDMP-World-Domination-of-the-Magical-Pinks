@@ -31,60 +31,68 @@
               <a class = "navbar_text nav-link" href="/saved_trips"> SAVED TRIPS </a>                
             </li>
           </ul>
-      
           <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-            <li class="nav-item">
-              <a class = "navbar_text nav-link" href="/logout"> LOGOUT </a>                
-            </li>
-          </ul>
+            <li class="nav-item dropdown">
+                <button type="button" class="navbar_text btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" style="background-color: #2EC0F9; color: white" data-bs-toggle="dropdown"  data-bs-display="static">
+                    {{user}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="/account"> 
+                    <img src="../static/images/profile.jpg" style="border-radius:50%; width: 60px; height: 60px" class="mx-auto d-block p-0"> <br>
+                    <p class = "text-center pt-0"> {{user}} </p>
+                  </a></li>
+                  <li><a class="dropdown-item" href="/logout">LOGOUT</a></li>
+                </ul>
+              </li>
+        </ul>
         </div>
         <div class="flex-grow-1">
           <!--spacer-->
         </div>
-      </nav>      
-      
-          <div class = "container align-items center py-3 w-60">
-            <h1 class="text-center">
-                  Create Trip
-            </h1>
+      </nav>  
 
-            <h2> Flights </h2>
-            <p> {{STATUS}} </p>
-            <div class = "row g-0">
+      <div class = "container align-items center py-3 w-60">
+        <h1 class="text-center">
+              Create Trip
+        </h1>
 
-            {% for x in FLIGHTS %}
-            <div class = "col">
-              <div class="card my-2 mx-1" style="width: 25rem;">
-                <div class="card-header">
-                  {{x["company"]}}
-                </div>
-                <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
-                  <h5 class="card-title">Roundtrip</h5>
-                  <p class="card-text"> 
-                    Departure Flight: {{x["nice-start-time"][0]}} on {{x["nice-start-time"][1]}}<br>
-                    Return Flight: {{x["nice-end-time"][0]}} on {{x["nice-end-time"][1]}} <br>
-                    Total Price: ${{x["price"]}}</p>
-                  
-                  <form action = "/post_flights" method="POST">
-                    <input type="hidden" name="trip_count" value={{COUNT}}>
-                    <input type="hidden" name="trip_name" value="{{NAME}}">
-                    <input type="hidden" name="end_date" value='{{x["end-time"][0]}}T{{x["start-time"][1]}}'>
-                    <input type="hidden" name="start_date" value='{{x["start-time"][0]}}T{{x["end-time"][1]}}'>
-                    <input type="hidden" name="end_location" value='{{END_LOCATION}}'>
-                    <input type="hidden" name="start_location" value='{{START_LOCATION}}'>
-                    <input type="hidden" name="company" value='{{x["company"]}}'>
-                    <input type="hidden" name="price" value='{{x["price"]}}'>
-                    <button type = "submit" class = "btn" name="sub1" value="flights"> SELECT </button>
-                  </form>  
-                </div>
-              </div>
+        <h2> Flights </h2>
+        <p> {{STATUS}} </p>
+        <div class = "row g-0">
+
+        {% for x in FLIGHTS %}
+        <div class = "col">
+          <div class="card my-2 mx-1" style="width: 25rem;">
+            <div class="card-header">
+              {{x["company"]}}
             </div>
-            {% endfor %}
+            <div class="card-body"> <!--start-time[0] is the day, start-time[1] is the time of day-->
+              <h5 class="card-title">Roundtrip</h5>
+              <p class="card-text"> 
+                Departure Flight: {{x["nice-start-time"][0]}} on {{x["nice-start-time"][1]}}<br>
+                Return Flight: {{x["nice-end-time"][0]}} on {{x["nice-end-time"][1]}} <br>
+                Total Price: ${{x["price"]}}</p>
+              
+              <form action = "/post_flights" method="POST">
+                <input type="hidden" name="trip_count" value={{COUNT}}>
+                <input type="hidden" name="trip_name" value="{{NAME}}">
+                <input type="hidden" name="end_date" value='{{x["end-time"][0]}}T{{x["start-time"][1]}}'>
+                <input type="hidden" name="start_date" value='{{x["start-time"][0]}}T{{x["end-time"][1]}}'>
+                <input type="hidden" name="end_location" value='{{END_LOCATION}}'>
+                <input type="hidden" name="start_location" value='{{START_LOCATION}}'>
+                <input type="hidden" name="company" value='{{x["company"]}}'>
+                <input type="hidden" name="price" value='{{x["price"]}}'>
+                <button type = "submit" class = "btn" name="sub1" value="flights"> SELECT </button>
+              </form>  
             </div>
           </div>
-      <footer class="footer text-center py-2 fixed-bottom">
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+      <!-- <footer class="footer text-center py-2 fixed-bottom">
         <img src="../static/images/navbar_logo.jpg" width="50" height="50" class="rounded">
         Trippin' by World Domination by the Magical Pinks
-      </footer>
+      </footer> -->
     </body>
 </html>

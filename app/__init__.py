@@ -34,7 +34,7 @@ def home_page():
     elif (get_username(session.get("ID")) == None):
         return redirect(url_for("login"))
     else:
-        print("ID IS : " + str(session['ID']))
+        #print("ID IS : " + str(session['ID']))
         # stat = F"Logged in as {get_username(session['ID'])}"
         session_user = F"{get_username(session['ID'])}"
     return render_template("home_page.html", user=session_user) #status=stat
@@ -121,7 +121,9 @@ def flights():
 
         flights = get_flight_dict(start_iata, end_iata, start_date, end_date, trip_count)
         result = []
-
+        status = ""
+        if (flights == []):
+            status = "There are no flights found."
         for data in flights:
             instance = {}
             instance["start-time"] = data["start-time"].split("T") # splits yyyy-mm-ddThh:mm:ss in the middle
@@ -133,7 +135,7 @@ def flights():
             result.append(instance)
 
         # Each dictionary will have: start-time: "yyyy-mm-dd", end-time: "yyyy-mm-dd", price: "total_price", company: "company"
-    return render_template("create_trip_flights.html", FLIGHTS=result, NAME=trip_name, END_LOCATION=end_location, START_LOCATION=start_location, COUNT=trip_count)
+    return render_template("create_trip_flights.html", FLIGHTS=result, NAME=trip_name, END_LOCATION=end_location, START_LOCATION=start_location, COUNT=trip_count, STATUS=status)
     
 
 @app.route("/post_flights", methods=["GET", "POST"])
@@ -145,7 +147,6 @@ def post_flights():
     end_location = request.form.get("end_location")
     count = request.form.get("trip_count")
     name = request.form.get("trip_name")
-    print("NAME:" + name)
     end_date = request.form.get("end_date")
     start_date = request.form.get("start_date")
     price = request.form.get("price")
@@ -162,7 +163,7 @@ def create_activities():
     trip_id = request.args.get("ID", None)
     if ( location == None ):
         return redirect(url_for("create_trip"))
-    act_list = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+    act_list = ['hot_springs', 'volcanoes', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
     return render_template("create_trip_activities.html", LOCATION=location, ID=trip_id, ACTIVITY_LIST=act_list)
 
 @app.route("/create_activities_display", methods=["GET", "POST"])
@@ -175,7 +176,7 @@ def create_activities_display():
     
     city = request.form.get("location", None)
     activity_count = request.form.get("activity_count", 1)
-    act_list = ['natural', 'hot_springs', 'volcanoes', 'beaches', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
+    act_list = ['hot_springs', 'volcanoes', 'museums', 'art_galleries', 'adult', 'circuses', 'historical_places', 'castles', 'churches', 'architecture', 'amusements', 'sport', 'casino', 'malls', 'foods']
     selected_activities = []
 
     for x in act_list:

@@ -84,6 +84,10 @@ body{
     height: 15%;
     justify-items: center;
 }
+
+#link {
+    color: #4E148C; 
+}
 /* red: #FE5F55
 yellow: #FFD166
 green: #06D6A0

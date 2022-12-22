@@ -49,14 +49,21 @@
       </nav>  
 
       <div class = "container py-3 w-50">        
-        </div>
+      </div>
         <div class="container-fluid w-50 bg-light text-black">
-            <div class="row align-items-center">
+            <div class="row align-items-center text-center">
               <img src="../static/images/profile.jpg" style="width: 150px; height: 150px" class="mx-auto d-block p-0"> <br>
-              <h1 class="text-center">  
+              <h1>  
                 {{user}}
-               </h1> 
-              <p class = "text-center"> Nothing to see here </p>
+              </h1>"
+              <p id="pass-reveal" class="text-info">Click to reveal password</p>
+              <script>
+                document.getElementById("pass-reveal").addEventListener("click", reveal);
+                
+                function reveal() {
+                  document.getElementById("pass-reveal").innerHTML = {{passw}};
+                }
+              </script>
             </div>
         </div>
         <!-- <footer class="footer text-center py-2 fixed-bottom">

@@ -260,5 +260,6 @@ hotels are shown
 yukiF -- 2022-12-21 23:26
 --------------------------------------------------------------
 added scrollspy element for travel tips
+tried to make loading page
 ==============================================================
 

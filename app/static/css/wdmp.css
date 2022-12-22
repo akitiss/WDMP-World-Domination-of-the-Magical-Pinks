@@ -86,10 +86,13 @@ body{
     justify-items: center;
 }
 
-#link {
-    color: #4E148C; 
+#link:hover {
+    color: #ffd166; 
+    font-size: 150%;
 }
-
+#link {
+    color: #5bc0de;
+}
 .dropdown-item:hover{
     background-color: #2EC0F9;
 }
@@ -101,8 +104,11 @@ body{
     background-color: #ffd166;
     color:#010C06;
 }
-/* red: #FE5F55
+/*
+red: #FE5F55
 yellow: #FFD166
 green: #06D6A0
 blue: #2EC0F9
-purple: #4E148C */
+purple: #4E148C 
+info: #5bc0de
+*/

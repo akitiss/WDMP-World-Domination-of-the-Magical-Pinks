@@ -19,6 +19,7 @@ Based on user selection, app will help plan a trip. User gets to select a multit
 ### API Keys:     
 - Sign Up for these apis here to get your keys:  
 [WeatherBit](https://www.weatherbit.io/account/create) [OpenTripMap](https://opentripmap.io/docs) [Amadeus](https://developers.amadeus.com/register) [Google Maps](https://console.cloud.google.com/google/maps-apis/overview?project=reliable-proton-370822)
+- Note: the opentripmap API site has been unavailable for around a week as of 12/23/2022
 - For Google Maps API you will need to provide some billing info, but the API we are using from their platform is free so there should not be any costs.
   - You will have to create a 'project' on google maps and amadeus to generate a key. In the google maps project you can specify which apis you want to restrict the project to by going to [credentials](https://console.cloud.google.com/apis/credentials?) and clicking on the actions>edit api key>restrict key to maps embed api.
 - Keys should be placed in these places with no extra lines:  
